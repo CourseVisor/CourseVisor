@@ -1,5 +1,4 @@
 # CourseVisor
-The repo hosting CourseVisor website
 
 Mission statement: Optimize student learning through student-centered information
 
