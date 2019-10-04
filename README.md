@@ -8,4 +8,4 @@ Roles:
 * CDO: Aimee Wu
 * CTO: Brian Do
 
-[Problem Statement](https://www.google.com)
+[Problem Statement](https://github.com/Coursvisor/CourseVisor/wiki/Problem-Description)
