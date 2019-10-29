@@ -2,13 +2,13 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
 const CourseTeacherReviewModel = () => {
-  return (
-    <div className="CourseTeacherReviewModel">
-    </div>
-  )
+  // do something with props here
+  addCourseTeacherReview = () => {
+    // firebase.add(this.props.course)
+  }
 }
 CourseTeacherReviewModel.propTypes = {
-  coursePrefix: {
+  course: {
     courseName: string,
     courseTitle: string,
     instructors: PropTypes.arrayOf({
