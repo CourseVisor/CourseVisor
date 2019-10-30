@@ -7,5 +7,6 @@ Roles:
 * PM: Xiang Li
 * CDO: Aimee Wu
 * CTO: Brian Do
+* CTO: Timur Yafunyaev
 
 [Problem Statement](https://github.com/Coursvisor/CourseVisor/wiki/Problem-Description)
