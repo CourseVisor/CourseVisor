@@ -28,10 +28,15 @@ const theme = createMuiTheme({
       text: {
         // Some CSS
         position: 'absolute',
-        left: '14.17%',
-        right: '14.17%',
-        top: '27.5%',
-        bottom: '25%',
+        // left: '14.17%',
+        // right: '14.17%',
+        // top: '27.5%',
+        // bottom: '25%',
+
+        width: '90px',
+        height: '30px',
+        left: '1150px',
+        top: '20px',
 
         fontFamily: 'Roboto',
         fontStyle: 'normal',

@@ -44,8 +44,6 @@ class App extends Component {
 
   render() {
     let content = null;
-    
-
 
     content = (
       <Router>
