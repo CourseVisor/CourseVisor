@@ -2,9 +2,13 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import './SignInView.css';
 
-class SignInView extends Component {
+export class SignInView extends Component {
   constructor(props){
     super(props);
+  }
+
+  this.state = {
+    'email': 
   }
   render(){
     return (
