@@ -1,0 +1,22 @@
+.HomePageView {
+  background-color: #42005a;
+  padding-top: 70px;
+  height: 100vh;
+  text-align: center;
+}
+
+.search-text {
+  color: white;
+  .course {
+    color: #fab224;
+  }
+}
+
+.submit-button {
+  text-align: center;
+  position: absolute;
+  width: 90px;
+  height: 30px;
+  background-color: #BD36EC !important;
+  border-radius: 20px !important;
+}

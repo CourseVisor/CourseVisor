@@ -6,6 +6,7 @@ import './App.css';
 import {BrowserRouter as Router, Route, Link, NavLink, Switch} from "react-router-dom";
 
 import {NavBarView} from './NavBarView/NavBarView.js';
+import HomePageView from './HomePageView/HomePageView';
 
 
 // function App() {
@@ -50,9 +51,10 @@ class App extends Component {
         <div>
           <header>
             <NavBarView/>
-            <p>
+            <HomePageView />
+            {/* <p>
               Hello World!
-            </p>
+            </p> */}
 
           </header>
         </div>
