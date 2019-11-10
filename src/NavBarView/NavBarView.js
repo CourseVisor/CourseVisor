@@ -1,13 +1,22 @@
-import React, {Component} from 'react';
-import PropTypes from 'prop-types';
-import './NavBarView.scss';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import "./NavBarView.scss";
 
-import {BrowserRouter as Router, Route, Link, NavLink, Switch} from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  NavLink,
+  Switch
+} from "react-router-dom";
 
-import Button from '@material-ui/core/Button';
+import Button from "@material-ui/core/Button";
 
-
-import { createMuiTheme, ThemeProvider, withStyles} from '@material-ui/core/styles';
+import {
+  createMuiTheme,
+  ThemeProvider,
+  withStyles
+} from "@material-ui/core/styles";
 
 // import { makeStyles } from '@material-ui/core/styles';
 
@@ -20,71 +29,68 @@ import { createMuiTheme, ThemeProvider, withStyles} from '@material-ui/core/styl
 //   },
 // }));
 
-const theme = createMuiTheme({
-  overrides: {
-    // Style sheet name
-    MuiButton: {
-      // Name of the rule
-      text: {
-        // Some CSS
-        position: 'absolute',
-        // left: '14.17%',
-        // right: '14.17%',
-        // top: '27.5%',
-        // bottom: '25%',
+// const theme = createMuiTheme({
+//   overrides: {
+//     // Style sheet name
+//     MuiButton: {
+//       // Name of the rule
+//       text: {
+//         // Some CSS
+//         position: 'absolute',
+//         // left: '14.17%',
+//         // right: '14.17%',
+//         // top: '27.5%',
+//         // bottom: '25%',
 
-        width: '90px',
-        height: '30px',
-        left: '1150px',
-        top: '20px',
+//         width: '90px',
+//         height: '30px',
+//         left: '1150px',
+//         top: '20px',
 
-        fontFamily: 'Roboto',
-        fontStyle: 'normal',
-        fontWeight: 'bold',
-        fontSize: '12px',
-        lineHeight: '14px',
-        display: 'flex',
-        alignItems: 'center',
-        textAlign: 'center',
-        textTransform: 'capitalize',
+//         fontFamily: 'Roboto',
+//         fontStyle: 'normal',
+//         fontWeight: 'bold',
+//         fontSize: '12px',
+//         lineHeight: '14px',
+//         display: 'flex',
+//         alignItems: 'center',
+//         textAlign: 'center',
+//         textTransform: 'capitalize',
 
-        color: '#FFFFFF',
-      },
+//         color: '#FFFFFF',
+//       },
 
-      // root: {
-      //   position: 'relative',
-      // }
-    },
-  },
-});
-
+//       // root: {
+//       //   position: 'relative',
+//       // }
+//     },
+//   },
+// });
 
 const StyledButton = withStyles({
   root: {
-    background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+    background: "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",
     borderRadius: 3,
     border: 0,
-    color: 'white',
+    color: "white",
     height: 48,
-    padding: '0 30px',
-    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+    padding: "0 30px",
+    boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)"
   },
   label: {
-    textTransform: 'capitalize',
-    fontFamily: 'Roboto',
-    fontWeight: 'bold',
+    textTransform: "capitalize",
+    fontFamily: "Roboto",
+    fontWeight: "bold",
 
-    position: 'absolute',
-    width: '90px',
-    height: '30px',
-    left: '1150px',
-    top: '20px',
-
-  },
+    position: "absolute",
+    width: "90px",
+    height: "30px",
+    left: "1150px",
+    top: "20px"
+  }
 })(Button);
 
-export class NavBarView extends Component{
-
+export class NavBarView extends Component {
   // constructor(props){
   //   super(props);
   // }
@@ -93,18 +99,14 @@ export class NavBarView extends Component{
     // const classes = useStyles();
 
     return (
-      <nav className='navBarView'>
-        <ThemeProvider theme={theme}>
-          <Button className='signIn'>Sign In</Button>
-          <Button className='signUp'>Sign Up</Button>
-        </ThemeProvider>
+      <nav className="navBarView">
+        <Button className="signIn">Sign In</Button>
+        <Button className="signUp">Sign Up</Button>
 
         {/* <StyledButton>Styled Button</StyledButton> */}
       </nav>
-    )
+    );
   }
-
-
 }
 
 export default NavBarView;

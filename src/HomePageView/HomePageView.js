@@ -1,7 +1,27 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import Button from '@material-ui/core/Button';
+import Button from "@material-ui/core/Button";
+import {
+  createMuiTheme,
+  ThemeProvider,
+  withStyles
+} from "@material-ui/core/styles";
+
 import "./HomePageView.scss";
+
+const SubmitButton = withStyles({
+  root: {
+    "background-color": "#BD36EC",
+    "border-radius": "20px",
+    width: "180px",
+    height: "40px",
+    "vertical-align": "middle"
+  },
+  text: {
+    color: "white",
+    textTransform: "capitalize"
+  }
+})(Button);
 
 class HomePageView extends Component {
   constructor(props) {
@@ -14,8 +34,8 @@ class HomePageView extends Component {
           Search for a <span className="course">course</span> review
         </h1>
         <div>* insert SearchBarView here *</div>
-        <div className="or-text">- or -</div>
-        <div><Button className="submit-button">Submit New Review</Button></div>
+        <div className="or-text">-- or --</div>
+        <SubmitButton className="submit-button">Submit New Review</SubmitButton>
       </div>
     );
   }
