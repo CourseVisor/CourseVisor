@@ -1,17 +1,22 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 // import logo from './logo.svg';
-import './App.css';
+import "./App.css";
 // import firebase from 'firebase/app';
 
-import {BrowserRouter as Router, Route, Link, NavLink, Switch} from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  NavLink,
+  Switch
+} from "react-router-dom";
 
-import {NavBarView} from './NavBarView/NavBarView.js';
-import HomePageView from './HomePageView/HomePageView';
-
+import { NavBarView } from "./NavBarView/NavBarView.js";
+import NewReviewView from "./NewReviewView/NewReviewView";
+import HomePageView from "./HomePageView/HomePageView";
 
 // function App() {
 
-  
 //   return (
 //     <div className="App">
 //       <header className="App-header">
@@ -32,15 +37,12 @@ import HomePageView from './HomePageView/HomePageView';
 //   );
 // }
 
-
 // return
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-
-    }
+    this.state = {};
   }
 
   render() {
@@ -50,31 +52,22 @@ class App extends Component {
       <Router>
         <div>
           <header>
-            <NavBarView/>
-            <HomePageView />
+            <NavBarView />
+            <Route exact path="/" component={HomePageView} />
+            <Route path="/new-review" component={NewReviewView} />
             {/* <p>
               Hello World!
             </p> */}
-
           </header>
         </div>
       </Router>
-
-    )
+    );
 
     return content;
   }
-
-  
-
 }
 
-
-
-
-
 export default App;
-
 
 // import React from 'react';
 // import ReactDOM from 'react-dom';
