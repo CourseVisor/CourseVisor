@@ -1,12 +1,52 @@
 .NewReviewView {
   padding-top: 70px;
+  padding-bottom: 25px;
+}
+
+.submit-new-review {
+  padding-top: 30px;
   text-align: center;
 }
 
 .submit-form {
   padding-top: 35px;
+  .buttons {
+    width: 100%;
+    display: inline-block;
+    overflow: auto;
+    white-space: nowrap;
+    margin: 0px auto;
+  }
   .submit-input {
     padding-bottom: 20px;
-    width: 100%
+    width: 100%;
+  }
+  .ratings {
+    text-align: left;
+    color: #42005a;
+  }
+  a {
+    text-decoration: none;
+  }
+  .error-message {
+    color: red;
+    text-align: right;
+    display: block;
+    padding-top: 1rem;
+    font-size: .75rem;
+  }
+  .star-ratings {
+    display: table;
+    table-layout: fixed;
+    text-align: left;
+    .rating-header {
+      color: #42005a;
+      display: table-cell;
+      vertical-align: middle;
+    }
+    .tooltip {
+      display: table-cell;
+      vertical-align: middle;
+    }
   }
 }
