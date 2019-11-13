@@ -1,9 +1,12 @@
+@import "../palette.scss";
+
 .NewReviewView {
   padding-top: 70px;
   padding-bottom: 25px;
 }
 
 .submit-new-review {
+  color: $super-dark-purple;
   padding-top: 30px;
   text-align: center;
 }
@@ -23,7 +26,7 @@
   }
   .ratings {
     text-align: left;
-    color: #42005a;
+    color: $super-dark-purple;
   }
   a {
     text-decoration: none;
@@ -36,16 +39,17 @@
     font-size: .75rem;
   }
   .star-ratings {
-    display: table;
-    table-layout: fixed;
+    // display: table;
+    // table-layout: fixed;
     text-align: left;
     .rating-header {
-      color: #42005a;
-      display: table-cell;
+      width: 100%;
+      color: $super-dark-purple;
+      // display: table-cell;
       vertical-align: middle;
     }
     .tooltip {
-      display: table-cell;
+      // display: table-cell;
       vertical-align: middle;
     }
   }

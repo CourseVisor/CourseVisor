@@ -14,7 +14,6 @@ import {
 import { NavBarView } from "./NavBarView/NavBarView.js";
 import NewReviewView from "./NewReviewView/NewReviewView";
 import HomePageView from "./HomePageView/HomePageView";
-
 // function App() {
 
 //   return (
