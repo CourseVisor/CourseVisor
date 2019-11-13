@@ -113,14 +113,14 @@ class NewReviewView extends Component {
       comments: event.target.value
     });
   };
-  validateForm = async() => {
+  validateForm = async () => {
     this.setState({ clicked: true });
     const condition =
-    this.state.workloadRating === 0 ||
-    this.state.gradingRating === 0 ||
-    this.state.instructorRating === 0 ||
-    !this.state.course ||
-    !this.state.instructor;
+      this.state.workloadRating === 0 ||
+      this.state.gradingRating === 0 ||
+      this.state.instructorRating === 0 ||
+      !this.state.course ||
+      !this.state.instructor;
     await this.setState({
       validate: condition ? false : true
     });
@@ -139,9 +139,7 @@ class NewReviewView extends Component {
     };
     firebase
       .database()
-      .ref(
-        `courseTeacherReview/${course}/instructors/${instructor}/reviews`
-      )
+      .ref(`courseTeacherReview/${course}/instructors/${instructor}/reviews`)
       .push(instructorReview);
   };
   render() {
@@ -154,6 +152,7 @@ class NewReviewView extends Component {
               <SubmitInput
                 required
                 label="Course"
+                placeholder="Please enter the course prefix and code, e.g. INFO 442"
                 variant="outlined"
                 onChange={this.updateCourse}
               />
@@ -162,94 +161,97 @@ class NewReviewView extends Component {
               <SubmitInput
                 required
                 label="Instructor"
+                placeholder="Please enter the instructor's full name"
                 variant="outlined"
                 onChange={this.updateInstructor}
               />
             </div>
-            <p className="ratings">Ratings *</p>
-            <div className="star-ratings">
-              <Grid
-                container
-                direction="row"
-                justify="flex-start"
-                alignItems="center"
-              >
-                <Grid item xs={2}>
-                  <span className="rating-header">Workload</span>
+            <div className="ratings-field">
+              <p className="ratings">Ratings *</p>
+              <div className="star-ratings">
+                <Grid
+                  container
+                  direction="row"
+                  justify="flex-start"
+                  alignItems="center"
+                >
+                  <Grid item xs={2}>
+                    <span className="rating-header">Workload</span>
+                  </Grid>
+                  <Grid item xs={10}>
+                    <RatingToolTip title="The workload of this course is rated from 1 star to 5 stars. 1 represents the most work and 5 represents minimal work">
+                      <IconButton aria-label="help">
+                        <HelpOutlineOutlinedIcon />
+                      </IconButton>
+                    </RatingToolTip>
+                    <StarRatings
+                      rating={this.state.workloadRating}
+                      starDimension="2rem"
+                      starRatedColor="#7800A2"
+                      starHoverColor="#D88AF3"
+                      changeRating={this.changeWorkloadRating}
+                      numberOfStars={5}
+                      name="rating"
+                    />
+                  </Grid>
                 </Grid>
-                <Grid item xs={10}>
-                  <RatingToolTip title="The workload of this course is rated from 1 star to 5 stars. 1 represents the most work and 5 represents minimal work">
-                    <IconButton aria-label="help">
-                      <HelpOutlineOutlinedIcon />
-                    </IconButton>
-                  </RatingToolTip>
-                  <StarRatings
-                    rating={this.state.workloadRating}
-                    starDimension="2rem"
-                    starRatedColor="#7800A2"
-                    starHoverColor="#D88AF3"
-                    changeRating={this.changeWorkloadRating}
-                    numberOfStars={5}
-                    name="rating"
-                  />
+              </div>
+              <div className="star-ratings">
+                <Grid
+                  container
+                  direction="row"
+                  justify="flex-start"
+                  alignItems="center"
+                >
+                  <Grid item xs={2}>
+                    <span className="rating-header">Grading</span>
+                  </Grid>
+                  <Grid item xs={10}>
+                    <RatingToolTip title="The grading of this course is rated from 1 star to 5 stars. 1 represents strict grading and 5 represents lenient grading">
+                      <IconButton aria-label="help">
+                        <HelpOutlineOutlinedIcon />
+                      </IconButton>
+                    </RatingToolTip>
+                    <StarRatings
+                      rating={this.state.gradingRating}
+                      starDimension="2rem"
+                      starRatedColor="#7800A2"
+                      starHoverColor="#D88AF3"
+                      changeRating={this.changeGradingRating}
+                      numberOfStars={5}
+                      name="rating"
+                    />
+                  </Grid>
                 </Grid>
-              </Grid>
-            </div>
-            <div className="star-ratings">
-              <Grid
-                container
-                direction="row"
-                justify="flex-start"
-                alignItems="center"
-              >
-                <Grid item xs={2}>
-                  <span className="rating-header">Grading</span>
+              </div>
+              <div className="star-ratings">
+                <Grid
+                  container
+                  direction="row"
+                  justify="flex-start"
+                  alignItems="center"
+                >
+                  <Grid item xs={2}>
+                    <span className="rating-header">Instructor</span>
+                  </Grid>
+                  <Grid item xs={10}>
+                    <RatingToolTip title="The instructor of this course is rated from 1 star to 5 stars. 1 represents ineffective and 5 represents effective">
+                      <IconButton aria-label="help">
+                        <HelpOutlineOutlinedIcon />
+                      </IconButton>
+                    </RatingToolTip>
+                    <StarRatings
+                      rating={this.state.instructorRating}
+                      starDimension="2rem"
+                      starRatedColor="#7800A2"
+                      starHoverColor="#D88AF3"
+                      changeRating={this.changeInstructorRating}
+                      numberOfStars={5}
+                      name="rating"
+                    />
+                  </Grid>
                 </Grid>
-                <Grid item xs={10}>
-                  <RatingToolTip title="The grading of this course is rated from 1 star to 5 stars. 1 represents strict grading and 5 represents lenient grading">
-                    <IconButton aria-label="help">
-                      <HelpOutlineOutlinedIcon />
-                    </IconButton>
-                  </RatingToolTip>
-                  <StarRatings
-                    rating={this.state.gradingRating}
-                    starDimension="2rem"
-                    starRatedColor="#7800A2"
-                    starHoverColor="#D88AF3"
-                    changeRating={this.changeGradingRating}
-                    numberOfStars={5}
-                    name="rating"
-                  />
-                </Grid>
-              </Grid>
-            </div>
-            <div className="star-ratings">
-              <Grid
-                container
-                direction="row"
-                justify="flex-start"
-                alignItems="center"
-              >
-                <Grid item xs={2}>
-                  <span className="rating-header">Instructor</span>
-                </Grid>
-                <Grid item xs={10}>
-                  <RatingToolTip title="The instructor of this course is rated from 1 star to 5 stars. 1 represents ineffective and 5 represents effective">
-                    <IconButton aria-label="help">
-                      <HelpOutlineOutlinedIcon />
-                    </IconButton>
-                  </RatingToolTip>
-                  <StarRatings
-                    rating={this.state.instructorRating}
-                    starDimension="2rem"
-                    starRatedColor="#7800A2"
-                    starHoverColor="#D88AF3"
-                    changeRating={this.changeInstructorRating}
-                    numberOfStars={5}
-                    name="rating"
-                  />
-                </Grid>
-              </Grid>
+              </div>
             </div>
             <div className="submit-input">
               <SubmitInput
