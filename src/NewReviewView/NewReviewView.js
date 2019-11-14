@@ -30,14 +30,6 @@ const ReviewContainer = withStyles({
   }
 })(Container);
 
-const RatingToolTip = withStyles({
-  root: {
-    display: "inline-block",
-    padding: 0,
-    "white-space": "nowrap"
-  }
-})(Tooltip);
-
 const CancelButton = withStyles({
   root: {
     "background-color": "transparent",
@@ -179,11 +171,11 @@ class NewReviewView extends Component {
                     <span className="rating-header">Workload</span>
                   </Grid>
                   <Grid item xs={10}>
-                    <RatingToolTip title="The workload of this course is rated from 1 star to 5 stars. 1 represents the most work and 5 represents minimal work">
+                    <Tooltip title="The workload of this course is rated from 1 star to 5 stars. 1 represents the most work and 5 represents minimal work">
                       <IconButton aria-label="help">
                         <HelpOutlineOutlinedIcon />
                       </IconButton>
-                    </RatingToolTip>
+                    </Tooltip>
                     <StarRatings
                       rating={this.state.workloadRating}
                       starDimension="2rem"
@@ -207,11 +199,11 @@ class NewReviewView extends Component {
                     <span className="rating-header">Grading</span>
                   </Grid>
                   <Grid item xs={10}>
-                    <RatingToolTip title="The grading of this course is rated from 1 star to 5 stars. 1 represents strict grading and 5 represents lenient grading">
+                    <Tooltip title="The grading of this course is rated from 1 star to 5 stars. 1 represents strict grading and 5 represents lenient grading">
                       <IconButton aria-label="help">
                         <HelpOutlineOutlinedIcon />
                       </IconButton>
-                    </RatingToolTip>
+                    </Tooltip>
                     <StarRatings
                       rating={this.state.gradingRating}
                       starDimension="2rem"
@@ -235,11 +227,11 @@ class NewReviewView extends Component {
                     <span className="rating-header">Instructor</span>
                   </Grid>
                   <Grid item xs={10}>
-                    <RatingToolTip title="The instructor of this course is rated from 1 star to 5 stars. 1 represents ineffective and 5 represents effective">
+                    <Tooltip title="The instructor of this course is rated from 1 star to 5 stars. 1 represents ineffective and 5 represents effective">
                       <IconButton aria-label="help">
                         <HelpOutlineOutlinedIcon />
                       </IconButton>
-                    </RatingToolTip>
+                    </Tooltip>
                     <StarRatings
                       rating={this.state.instructorRating}
                       starDimension="2rem"
