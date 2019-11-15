@@ -1,25 +1,10 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Button from "@material-ui/core/Button";
-import {
-  withStyles
-} from "@material-ui/core/styles";
-
+import { withStyles } from "@material-ui/core/styles";
+import SubmitButtonView from "../SubmitButtonView/SubmitButtonView.js";
 import "./HomePageView.scss";
-
-const SubmitButton = withStyles({
-  root: {
-    "background-color": "#BD36EC",
-    "border-radius": "20px",
-    width: "180px",
-    height: "40px",
-    "vertical-align": "middle"
-  },
-  text: {
-    color: "white",
-    textTransform: "capitalize"
-  }
-})(Button);
+import { Link } from "react-router-dom";
 
 class HomePageView extends Component {
   constructor(props) {
@@ -33,7 +18,9 @@ class HomePageView extends Component {
         </h1>
         <div>* insert SearchBarView here *</div>
         <div className="or-text">-- or --</div>
-        <SubmitButton className="submit-button">Submit New Review</SubmitButton>
+        <Link to="/new-review">
+          <SubmitButtonView />
+        </Link>
       </div>
     );
   }

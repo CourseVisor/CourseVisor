@@ -50,14 +50,9 @@ class App extends Component {
     content = (
       <Router>
         <div>
-          <header>
             <NavBarView />
             <Route exact path="/" component={HomePageView} />
             <Route path="/new-review" component={NewReviewView} />
-            {/* <p>
-              Hello World!
-            </p> */}
-          </header>
         </div>
       </Router>
     );
