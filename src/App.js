@@ -48,7 +48,7 @@ class App extends Component {
     let content = null;
 
     content = (
-      <Router>
+      <Router basename={process.env.PUBLIC_URL}>
         <div>
             <NavBarView />
             <Route exact path="/" component={HomePageView} />
