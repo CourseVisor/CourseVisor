@@ -3,36 +3,10 @@ import React, { Component } from 'react';
 import './App.css';
 // import firebase from 'firebase/app';
 
-import {BrowserRouter as Router, Route, Link, NavLink, Switch} from "react-router-dom";
+import {BrowserRouter as Router, Route, Link, Switch} from "react-router-dom";
 
 import {NavBarView} from './NavBarView/NavBarView.js';
-
-
-// function App() {
-
-  
-//   return (
-//     <div className="App">
-//       <header className="App-header">
-//         <img src={logo} className="App-logo" alt="logo" />
-//         <p>
-//           Edit <code>src/App.js</code> and save to reload.
-//         </p>
-//         <a
-//           className="App-link"
-//           href="https://reactjs.org"
-//           target="_blank"
-//           rel="noopener noreferrer"
-//         >
-//           Learn React
-//         </a>
-//       </header>
-//     </div>
-//   );
-// }
-
-
-// return
+import {SignInView} from './SignInView/SignInView.js';
 
 class App extends Component {
   constructor(props) {
@@ -46,32 +20,59 @@ class App extends Component {
     let content = null;
 
     content = (
+      // <Router>
+      //   <div>
+      //     <header>
+      //       <NavBarView/>
+
+      //     </header>
+      //   </div>
+      // </Router>
       <Router>
         <div>
-          <header>
-            <NavBarView/>
-            <p>
-              Hello World!
-            </p>
-
-          </header>
+          <SignInView></SignInView>
         </div>
       </Router>
-
     )
-
     return content;
   }
-
-  
-
 }
+
+
+// export class NavSwitch extends Component {
+//   render() {
+//     let content = null;
+
+//     content = (
+//       <Switch>
+//         <Route path="/signin" render={() => <SignInView></SignInView>}/>}/>
+//       </Switch>
+//     )
+
+//     return content;
+
+//   }
+// }
 
 
 
 
 
 export default App;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // import React from 'react';
