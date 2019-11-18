@@ -1,0 +1,32 @@
+name: deploy_to_firebase_hosting
+
+on:
+  push:
+    tags:
+      - release-production-*
+
+jobs:
+  deploy_to_firebase_hosting:
+
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@master
+
+      - name: npm install
+        uses: "actions/npm@59b64a598378f31e49cb76f27d6f3312b582f680"
+        with:
+          args: "install"
+          
+      - name: build
+        uses: "actions/npm@59b64a598378f31e49cb76f27d6f3312b582f680"
+        with:
+          args: "run build"
+      
+      - name: Deploy to Firebase
+        uses: w9jds/firebase-action@master
+        with:
+          args: deploy --only hosting
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
