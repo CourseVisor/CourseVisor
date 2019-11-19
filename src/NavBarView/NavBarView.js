@@ -1,93 +1,67 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import "./NavBarView.scss";
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
+import './NavBarView.scss';
+import logo from '../logo.png'
 
-import {
-  BrowserRouter as Router,
-  Route,
-  Link,
-  NavLink,
-  Switch
-} from "react-router-dom";
+import {BrowserRouter as Router, Route, Link, NavLink, Switch} from "react-router-dom";
 
-import Button from "@material-ui/core/Button";
+import Button from '@material-ui/core/Button';
+import { withStyles} from '@material-ui/core/styles';
+import HomePageView from '../HomePageView/HomePageView';
+import SignInView from '../SignInView/SignInView';
+import AccountCreationView from '../AccountCreationView/AccountCreationView';
 
-import {
-  createMuiTheme,
-  ThemeProvider,
-  withStyles
-} from "@material-ui/core/styles";
 
-// import { makeStyles } from '@material-ui/core/styles';
+const SignInButton = withStyles({
 
-// const useStyles = makeStyles(theme => ({
-//   button: {
-//     margin: theme.spacing(1),
-//   },
-//   input: {
-//     display: 'none',
-//   },
-// }));
-
-// const theme = createMuiTheme({
-//   overrides: {
-//     // Style sheet name
-//     MuiButton: {
-//       // Name of the rule
-//       text: {
-//         // Some CSS
-//         position: 'absolute',
-//         // left: '14.17%',
-//         // right: '14.17%',
-//         // top: '27.5%',
-//         // bottom: '25%',
-
-//         width: '90px',
-//         height: '30px',
-//         left: '1150px',
-//         top: '20px',
-
-//         fontFamily: 'Roboto',
-//         fontStyle: 'normal',
-//         fontWeight: 'bold',
-//         fontSize: '12px',
-//         lineHeight: '14px',
-//         display: 'flex',
-//         alignItems: 'center',
-//         textAlign: 'center',
-//         textTransform: 'capitalize',
-
-//         color: '#FFFFFF',
-//       },
-
-//       // root: {
-//       //   position: 'relative',
-//       // }
-//     },
-//   },
-// });
-
-const StyledButton = withStyles({
-  root: {
-    background: "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",
-    borderRadius: 3,
-    border: 0,
-    color: "white",
-    height: 48,
-    padding: "0 30px",
-    boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)"
-  },
-  label: {
-    textTransform: "capitalize",
-    fontFamily: "Roboto",
-    fontWeight: "bold",
-
+  text: {
     position: "absolute",
-    width: "90px",
-    height: "30px",
-    left: "1150px",
-    top: "20px"
-  }
+    fontFamily: 'Roboto',
+    fontWeight: 'bold',
+    fontSize: '12px',
+    lineHeight: '14px',
+    display: 'flex',
+    alignItems: 'center',
+    textAlign: 'center',
+    textTransform: 'capitalize',
+    color: '#FFFFFF',
+
+    width: '90px',
+    height: '30px',
+    // left: '1150px',
+    right: '15%',
+    top: '20px',
+
+    backgroundColor: '#BD36EC',
+    borderRadius: '20px',
+  },  
+})(Button);
+
+
+const SignUpButton = withStyles({
+
+  text: {
+    position: "absolute",
+    fontFamily: 'Roboto',
+    fontWeight: 'bold',
+    fontSize: '12px',
+    lineHeight: '14px',
+    display: 'flex',
+    alignItems: 'center',
+    textAlign: 'center',
+    textTransform: 'capitalize',
+    color: '#FFFFFF',
+
+    width: '90px',
+    height: '30px',
+    // left: '1260px',
+    right: '7%',
+
+    top: '20px',
+
+    backgroundColor: '#BD36EC',
+    borderRadius: '20px',
+  },  
 })(Button);
 
 export class NavBarView extends Component {
@@ -96,14 +70,14 @@ export class NavBarView extends Component {
   // }
 
   render() {
-    // const classes = useStyles();
-
     return (
-      <nav className="navBarView">
-        <Button className="signIn">Sign In</Button>
-        <Button className="signUp">Sign Up</Button>
-
-        {/* <StyledButton>Styled Button</StyledButton> */}
+      <nav className='navBarView'>
+        {/* <NavLink exact to='/' component={HomePageView}><img className='logo' src={logo} alt='CourseVisor logo'></img></NavLink>
+        <NavLink to='/signin' component={SignInView}><SignInButton>Sign In</SignInButton></NavLink>
+        <NavLink to='/signup' component={AccountCreationView}><SignUpButton>Sign Up</SignUpButton></NavLink> */}
+        <NavLink exact to='/'><img className='logo' src={logo} alt='CourseVisor logo'></img></NavLink>
+        <NavLink to='/signin'><SignInButton>Sign In</SignInButton></NavLink>
+        <NavLink to='/signup'><SignUpButton>Sign Up</SignUpButton></NavLink>
       </nav>
     );
   }

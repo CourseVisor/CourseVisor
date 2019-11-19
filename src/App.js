@@ -8,32 +8,68 @@ import { BrowserRouter as Router, Route, Link, NavLink, Switch } from "react-rou
 import { NavBarView } from "./NavBarView/NavBarView.js";
 import NewReviewView from "./NewReviewView/NewReviewView";
 import HomePageView from "./HomePageView/HomePageView";
-function App() {
-  return (
-    <div className="App">
-      <NavBarView />
-      <Router basename={process.env.PUBLIC_URL}>
+import {SignInView} from './SignInView/SignInView.js';
+import AccountCreationView from "./AccountCreationView/AccountCreationView";
+
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
+  render() {
+    let content = null;
+
+    content = (
+      // <Router>
+      //   <div>
+      //     <header>
+      //       <NavBarView/>
+
+      //     </header>
+      //   </div>
+      // </Router>
+      <Router>
+        <NavBarView />
         <Route exact path="/" component={HomePageView} />
+        <Route path='/signin' component={SignInView} />
+        <Route path='/signup' component={AccountCreationView} />
         <Route path="/new-review" component={NewReviewView} />
       </Router>
-    </div>
-  );
+    )
+    return content;
+  }
 }
+// function App() {
+//   return (
+//     <div className="App">
+//       <NavBarView />
+//       <Router basename={process.env.PUBLIC_URL}>
+//         <Route exact path="/" component={HomePageView} />
+//         <Route path="/new-review" component={NewReviewView} />
+//       </Router>
+//     </div>
+//   );
+// }
 
 // return
 
-// class App extends Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {};
-//   }
 
+// export class NavSwitch extends Component {
 //   render() {
 //     let content = null;
 
 //     content = (
-//       <Router basename={process.env.PUBLIC_URL}>
-//         <div>
+//       <Switch>
+//         <Route path="/signin" render={() => <SignInView></SignInView>}/>}/>
+//       </Switch>
+//     )
+
+//     return content;
+
+//   }
+// }
+
 //             <NavBarView />
 //             <Route exact path="/" component={HomePageView} />
 //             <Route path="/new-review" component={NewReviewView} />

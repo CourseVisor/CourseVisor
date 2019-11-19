@@ -22,7 +22,7 @@ const StyledButton = withStyles({
   }
 })(Button);
 
-class SubmitButtonView extends Component {
+export class SubmitButtonView extends Component {
   //constructor(props){
   //  super(props);
   //}

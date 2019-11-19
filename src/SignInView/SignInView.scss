@@ -1,0 +1,74 @@
+.SignInView {
+    background-color: #42005A;
+    height: 100vh;
+}
+
+h1 {
+    padding-top: 130px;
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 2.5rem;
+    text-align: center;
+
+    color: #FFFFFF;
+}
+
+.goldBar {
+    width: 100%;
+    height: 0px;
+    top: 222px;
+    text-align: center;
+    border: 2px solid #FAB124;
+}
+
+.usernameBox {
+    position: relative;
+    width: 100%;
+    height: auto;
+    top: 2.5rem;
+    display: block;
+}
+
+.passwordBox {
+    position: relative;
+    width: 100%;
+    height: auto;
+    top: 4rem;
+    display: block;
+}
+
+.checkbox {
+    position: relative;
+    float: left;
+    width: 100%;
+    height: auto;
+    top: 5.5rem;
+    
+    text-align: left;
+    font-size: .875rem;
+    font-family: Roboto;
+    color: #FFFFFF;
+}
+
+.MuiFilledInput-input {
+    background-color: white !important;
+}
+
+.notMember {
+    position: relative;
+    width: 100%;
+    height: auto;
+
+    top: 8.5rem;
+
+    text-align: center;
+    font-size: 12px;
+    font-family: Roboto;
+    color: #FFFFFF;
+}
+
+.question {
+    display: inline
+}
