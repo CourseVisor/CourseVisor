@@ -3,13 +3,7 @@ import React, { Component } from "react";
 import "./App.css";
 // import firebase from 'firebase/app';
 
-import {
-  BrowserRouter as Router,
-  Route,
-  Link,
-  NavLink,
-  Switch
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Link, NavLink, Switch } from "react-router-dom";
 
 import { NavBarView } from "./NavBarView/NavBarView.js";
 import NewReviewView from "./NewReviewView/NewReviewView";
@@ -36,19 +30,29 @@ class App extends Component {
       //   </div>
       // </Router>
       <Router>
-        <div>
-          {/* <SignInView></SignInView> */}
-          <NavBarView />
-          <Route exact path="/" component={HomePageView} />
-          <Route path='/signin' component={SignInView} />
-          <Route path='/signup' component={AccountCreationView} />
-          <Route path="/new-review" component={NewReviewView} />
-        </div>
+        <NavBarView />
+        <Route exact path="/" component={HomePageView} />
+        <Route path='/signin' component={SignInView} />
+        <Route path='/signup' component={AccountCreationView} />
+        <Route path="/new-review" component={NewReviewView} />
       </Router>
     )
     return content;
   }
 }
+// function App() {
+//   return (
+//     <div className="App">
+//       <NavBarView />
+//       <Router basename={process.env.PUBLIC_URL}>
+//         <Route exact path="/" component={HomePageView} />
+//         <Route path="/new-review" component={NewReviewView} />
+//       </Router>
+//     </div>
+//   );
+// }
+
+// return
 
 
 // export class NavSwitch extends Component {
