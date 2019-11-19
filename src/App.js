@@ -1,19 +1,26 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 // import logo from './logo.svg';
-import './App.css';
+import "./App.css";
 // import firebase from 'firebase/app';
 
-import {BrowserRouter as Router, Route, Link, Switch} from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  NavLink,
+  Switch
+} from "react-router-dom";
 
-import {NavBarView} from './NavBarView/NavBarView.js';
+import { NavBarView } from "./NavBarView/NavBarView.js";
+import NewReviewView from "./NewReviewView/NewReviewView";
+import HomePageView from "./HomePageView/HomePageView";
 import {SignInView} from './SignInView/SignInView.js';
+import AccountCreationView from "./AccountCreationView/AccountCreationView";
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-
-    }
+    this.state = {};
   }
 
   render() {
@@ -30,7 +37,12 @@ class App extends Component {
       // </Router>
       <Router>
         <div>
-          <SignInView></SignInView>
+          {/* <SignInView></SignInView> */}
+          <NavBarView />
+          <Route exact path="/" component={HomePageView} />
+          <Route path='/signin' component={SignInView} />
+          <Route path='/signup' component={AccountCreationView} />
+          <Route path="/new-review" component={NewReviewView} />
         </div>
       </Router>
     )
@@ -54,26 +66,18 @@ class App extends Component {
 //   }
 // }
 
+//             <NavBarView />
+//             <Route exact path="/" component={HomePageView} />
+//             <Route path="/new-review" component={NewReviewView} />
+//         </div>
+//       </Router>
+//     );
 
-
-
+//     return content;
+//   }
+// }
 
 export default App;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // import React from 'react';
 // import ReactDOM from 'react-dom';

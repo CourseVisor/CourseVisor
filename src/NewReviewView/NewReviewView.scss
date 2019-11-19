@@ -1,0 +1,59 @@
+@import "../palette.scss";
+
+.NewReviewView {
+  padding-top: 70px;
+  padding-bottom: 25px;
+}
+
+.submit-new-review {
+  color: $super-dark-purple;
+  padding-top: 30px;
+  text-align: center;
+}
+
+.submit-form {
+  padding-top: 35px;
+  .buttons {
+    width: 100%;
+    display: inline-block;
+    overflow: auto;
+    white-space: nowrap;
+    margin: 0px auto;
+  }
+  .submit-input {
+    padding-bottom: 20px;
+    width: 100%;
+  }
+  .ratings-field {
+    padding-bottom: 20px;
+  }
+  .ratings {
+    text-align: left;
+    color: $super-dark-purple;
+  }
+  a {
+    text-decoration: none;
+  }
+  .error-message {
+    color: red;
+    text-align: right;
+    display: block;
+    padding-top: 1rem;
+    font-size: .75rem;
+  }
+  .star-ratings {
+    // display: table;
+    // table-layout: fixed;
+    text-align: left;
+    .rating-header {
+      width: 100%;
+      color: $super-dark-purple;
+      // display: table-cell;
+      vertical-align: middle;
+    }
+    .tooltip {
+      // display: table-cell;
+      vertical-align: middle;
+    }
+  }
+}

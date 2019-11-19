@@ -2,28 +2,24 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import './SignInView.scss';
 
-
-
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Checkbox from '@material-ui/core/Checkbox';
 import Container from'@material-ui/core/Container';
-
 import {withStyles} from '@material-ui/core/styles';
-
 
 import {NavBarView} from '../NavBarView/NavBarView.js';
 
+import {Link} from "react-router-dom";
 
 const LogInButton = withStyles({
 
   text: {
-    position: "absolute",
     fontFamily: 'Roboto',
     fontWeight: 'bold',
     fontSize: '12px',
     lineHeight: '14px',
-    display: 'flex',
+    display: 'inline-block',
     alignItems: 'center',
     textAlign: 'center',
     textTransform: 'capitalize',
@@ -31,19 +27,40 @@ const LogInButton = withStyles({
 
     width: '11.25rem',
     height: '2.5rem',
-    left: '630px',
-    top: '552px',
-
+    top: '7rem',
 
     backgroundColor: '#BD36EC',
     boxShadow: '2px 2px 4px rgba(0, 0, 0, 0.25)',
     borderRadius: '20px',
-  },  
+  },
+
+  root: {
+    position: "relative",
+    justifyContent: 'center',
+  }
+})(Button);
+
+const SignUpButton = withStyles({
+
+  text: {
+    fontFamily: 'Roboto',
+    fontStyle: 'normal',
+    fontWeight: 'normal',
+    fontSize: '12px',
+    lineHeight: '14px',
+    display: 'inline',
+    alignItems: 'center',
+    textAlign: 'center',
+    textTransform: 'capitalize',
+
+    color: '#FAB124',
+  },
 })(Button);
 
 const LogInContainer = withStyles({
   root: {
     width: "50%",
+    textAlign: 'center',
   }
 })(Container);
 
@@ -66,6 +83,7 @@ const PurpleCheckbox = withStyles({
       color: '#BD36EC',
       backgroundColor: '#FFFFFF',
     },
+    float: 'left',
   },
   checked: {},
 })(Checkbox);
@@ -92,10 +110,16 @@ export class SignInView extends Component {
             <TextBox variant='filled' label='Password' className='passwordBox' InputProps={{disableUnderline: true}}></TextBox>
           </div>
           <div className='checkbox'>
-            <PurpleCheckbox labelStyle={{color: 'white'}}
-  iconStyle={{fill: 'white'}}></PurpleCheckbox>Keep me logged in
+            <PurpleCheckbox></PurpleCheckbox>
+            <p className='keepLog'>Keep me logged in</p>
           </div>
           <LogInButton>Log In</LogInButton>
+          <div className='notMember'>
+            <p className='question'>Not a member?</p>
+            <Link to='/signup'>
+              <SignUpButton>Sign up</SignUpButton>
+            </Link>
+          </div>
         </LogInContainer>
       </div>
     )
@@ -103,3 +127,6 @@ export class SignInView extends Component {
 }
 
 export default SignInView;
+
+
+// onClick={() => "location.href='/signup'"}
