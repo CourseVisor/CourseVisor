@@ -121,8 +121,8 @@ class NewReviewView extends Component {
     }
   };
   addToFirebase = () => {
-    const course = this.state.course.toUpperCase();
-    const instructor = this.state.instructor.toUpperCase();
+    const prefix = this.state.course.toUpperCase().split(" ")[0];
+    const number = this.state.instructor.toUpperCase().split(" ")[1];
     const instructorReview = {
       ratingWorkload: this.state.workloadRating,
       ratingGrading: this.state.gradingRating,
@@ -131,7 +131,7 @@ class NewReviewView extends Component {
     };
     firebase
       .database()
-      .ref(`courseTeacherReview/${course}/instructors/${instructor}/reviews`)
+      .ref(`courseTeacherReview/${prefix}/${number}/instructors/${instructor}/reviews`)
       .push(instructorReview);
   };
   render() {
