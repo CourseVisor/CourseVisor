@@ -116,7 +116,6 @@ export class AccountCreationView extends Component {
       if (this.state.password !== this.state.passwordConf) {
         this.setState({ error: "Passwords do not match" });
       } else {
-        console.log("usernames", await firebase.database().ref("usernames").once("value"));
         try {
           const usernames = await firebase.database().ref("usernames").once("value");
           if (Object.values(usernames.val()).includes(this.state.username)) {
@@ -127,6 +126,7 @@ export class AccountCreationView extends Component {
             await newUser.user.updateProfile({ displayName: this.state.username });
             console.log(newUser.user);
             this.props.history.push("/");
+            firebase.database().ref("usernames").child(newUser.user.uid).set(this.state.username)
           }
         } catch (error) {
           this.setState({ error: error.message });

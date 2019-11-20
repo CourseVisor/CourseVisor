@@ -107,7 +107,7 @@ export class NavBarView extends Component {
   }
 
   render() {
-    if (this.props.currentUser) {
+    if (this.props.currentUser && this.props.currentUser.displayName) {
       return (
         <nav className="navBarView">
           <Container>
