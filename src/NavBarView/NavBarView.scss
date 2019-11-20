@@ -13,6 +13,19 @@
     width: 250px;
     height: 49.8px;
     // left: 90px;
-    left: 7%;
+    padding-left: 2rem;
     top: 10px;
+}
+
+.nav-container {
+    display: flex;
+    flex-direction: row-reverse;
+    padding-right: 2rem;
+}
+.username {
+    display: flex;
+    padding-top: 20px;
+    padding-right: 2rem;
+    color: white;
+    // float: right;
 }
