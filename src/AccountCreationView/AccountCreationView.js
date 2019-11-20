@@ -116,9 +116,9 @@ export class AccountCreationView extends Component {
       if (this.state.password !== this.state.passwordConf) {
         this.setState({ error: "Passwords do not match" });
       } else {
+        console.log("usernames", await firebase.database().ref("usernames").once("value"));
         try {
           const usernames = await firebase.database().ref("usernames").once("value");
-          // console.log(usernames.val());
           if (Object.values(usernames.val()).includes(this.state.username)) {
             this.setState({ error: "Username already exists" });
           } else {
@@ -140,7 +140,6 @@ export class AccountCreationView extends Component {
   render() {
     return (
       <div className="accountCreationView">
-        <NavBarView></NavBarView>
         <AccountCreationContainer>
           <div className="header">
             <span className="title">Sign up for </span>

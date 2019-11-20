@@ -3,9 +3,9 @@
     height: 100vh;
 }
 
-h1 {
-    padding-top: 130px;
-
+.login {
+    padding-top: 6rem;
+    padding-bottom: 2rem;
     font-family: Roboto;
     font-style: normal;
     font-weight: bold;
@@ -18,7 +18,7 @@ h1 {
 .goldBar {
     width: 100%;
     height: 0px;
-    top: 222px;
+    // top: 222px;
     text-align: center;
     border: 2px solid #FAB124;
 }
@@ -27,7 +27,7 @@ h1 {
     position: relative;
     width: 100%;
     height: auto;
-    top: 2.5rem;
+    // top: 2.5rem;
     display: block;
 }
 
@@ -35,7 +35,7 @@ h1 {
     position: relative;
     width: 100%;
     height: auto;
-    top: 4rem;
+    // top: 4rem;
     display: block;
 }
 
@@ -44,7 +44,8 @@ h1 {
     float: left;
     width: 100%;
     height: auto;
-    top: 5.5rem;
+    padding-top: 1rem;
+    // top: 5.5rem;
     
     text-align: left;
     font-size: .875rem;
@@ -59,9 +60,9 @@ h1 {
 .notMember {
     position: relative;
     width: 100%;
-    height: auto;
-
-    top: 8.5rem;
+    // height: auto;
+    padding-top: 1rem;
+    // top: 8.5rem;
 
     text-align: center;
     font-size: 12px;
@@ -71,4 +72,9 @@ h1 {
 
 .question {
     display: inline
+}
+
+.error {
+    color: white;
+    padding-top: 2rem;
 }
