@@ -10,7 +10,7 @@ import {
   Grid,
   Button
 } from "@material-ui/core";
-import { Link } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import HelpOutlineOutlinedIcon from "@material-ui/icons/HelpOutlineOutlined";
 import StarRatings from "react-star-ratings";
 import firebase from "firebase/app";
@@ -122,12 +122,14 @@ class NewReviewView extends Component {
   };
   addToFirebase = () => {
     const prefix = this.state.course.toUpperCase().split(" ")[0];
-    const number = this.state.instructor.toUpperCase().split(" ")[1];
+    const number = this.state.course.toUpperCase().split(" ")[1];
+    const instructor = this.state.instructor
     const instructorReview = {
       ratingWorkload: this.state.workloadRating,
       ratingGrading: this.state.gradingRating,
       ratingInstructor: this.state.instructorRating,
-      comment: this.state.comments
+      comment: this.state.comments,
+      username: this.props.currentUser.displayName
     };
     firebase
       .database()
@@ -135,6 +137,9 @@ class NewReviewView extends Component {
       .push(instructorReview);
   };
   render() {
+    if (!this.props.currentUser) {
+      return <Redirect push to="/signin" />;
+    }
     return (
       <div className="NewReviewView">
         <ReviewContainer>
@@ -274,6 +279,8 @@ class NewReviewView extends Component {
     );
   }
 }
-NewReviewView.propTypes = {};
+NewReviewView.propTypes = {
+  currentUser: Object
+};
 
 export default NewReviewView;
