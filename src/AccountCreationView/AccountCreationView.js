@@ -12,6 +12,7 @@ import { Link } from "react-router-dom";
 import { NavBarView } from "../NavBarView/NavBarView.js";
 import firebase from "firebase/app";
 import "firebase/auth";
+import "firebase/database";
 
 const AccountCreationContainer = withStyles({
   root: {
@@ -22,8 +23,9 @@ const AccountCreationContainer = withStyles({
 
 const TextBox = withStyles({
   root: {
+    marginTop: "1rem",
     border: "5px solid #F3D5FE",
-    overflow: "hidden",
+    // overflow: "hidden",
     borderRadius: 4,
     backgroundColor: "#FFFFFF",
 
@@ -49,7 +51,7 @@ const SignUpButton = withStyles({
 
     width: "11.25rem",
     height: "2.5rem",
-    top: "10rem",
+    marginTop: "2rem",
 
     backgroundColor: "#BD36EC",
     boxShadow: "2px 2px 4px rgba(0, 0, 0, 0.25)",
@@ -107,20 +109,27 @@ export class AccountCreationView extends Component {
     this.setState({ passwordConf: event.target.value });
   };
 
-  handleSubmit = async () => {
+  handleSubmit = async (event) => {
+    event.preventDefault();
     this.setState({ error: "" });
     if (this.state.email && this.state.password && this.state.username) {
       if (this.state.password !== this.state.passwordConf) {
         this.setState({ error: "Passwords do not match" });
       } else {
         try {
-          const newUser = await firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password);
-          console.log(newUser);
-          this.props.history.push("/");
-          await newUser.user.updateProfile({ displayName: this.state.username });
-          console.log(newUser.user);
+          const usernames = await firebase.database().ref("usernames").once("value");
+          // console.log(usernames.val());
+          if (Object.values(usernames.val()).includes(this.state.username)) {
+            this.setState({ error: "Username already exists" });
+          } else {
+            const newUser = await firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password);
+            console.log(newUser);
+            await newUser.user.updateProfile({ displayName: this.state.username });
+            console.log(newUser.user);
+            this.props.history.push("/");
+          }
         } catch (error) {
-          this.setState({ error: error });
+          this.setState({ error: error.message });
           console.log(error);
         }
       }
@@ -157,6 +166,7 @@ export class AccountCreationView extends Component {
               onChange={this.updatePassword}
               variant="filled"
               label="Password"
+              type="password"
               className="createPasswordBox"
               InputProps={{ disableUnderline: true }}
             ></TextBox>
@@ -164,18 +174,18 @@ export class AccountCreationView extends Component {
               onChange={this.updatePasswordConf}
               variant="filled"
               label="Confirm Password"
+              type="password"
               className="confirmPasswordBox"
               InputProps={{ disableUnderline: true }}
             ></TextBox>
-
-            <SignUpButton onClick={this.handleSubmit}>Sign Up</SignUpButton>
+            {this.state.error && <div className="error">{this.state.error}</div>}
+            <SignUpButton type="submit" onClick={this.handleSubmit}>Sign Up</SignUpButton>
           </form>
           <div className="alreadyMember">
             <p className="question">Already a member?</p>
             <Link to="/signin">
               <LogInButton>Log In</LogInButton>
             </Link>
-            {this.state.error && <p>{this.state.error}</p>}
           </div>
         </AccountCreationContainer>
       </div>
