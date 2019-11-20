@@ -11,6 +11,7 @@ import {withStyles} from '@material-ui/core/styles';
 import {NavBarView} from '../NavBarView/NavBarView.js';
 
 import {Link} from "react-router-dom";
+// import undefined from 'firebase/empty-import';
 
 const LogInButton = withStyles({
 
@@ -91,11 +92,28 @@ const PurpleCheckbox = withStyles({
 export class SignInView extends Component {
   constructor(props){
     super(props);
+
+    this.state = {
+      'email': undefined,
+      'password': undefined,
+    };
+
   }
 
-  // this.state = {
-  //   'email': 
-  // }
+  handleChange(event) {
+    let input = event.target.name;
+    let val = event.target.value;
+
+    let changes = {};
+    changes[input] = val;
+    this.setState(changes);
+  }
+
+  handleSignIn(event) {
+    event.preventDefault();
+    this.props.signInCallback(this.state.email, this.state.password);
+  }
+
   render(){
     return (
       <div className='SignInView'>
@@ -104,16 +122,16 @@ export class SignInView extends Component {
           <h1>Log In</h1>
           <div className='goldBar'></div>
           <div>
-            <TextBox variant='filled' label='Username/Email' className='usernameBox' InputProps={{disableUnderline: true}}></TextBox>
+            <TextBox name='email' variant='filled' label='Username/Email' className='usernameBox' InputProps={{disableUnderline: true}} onChange={(e) => this.handleChange(e)}></TextBox>
           </div>
           <div>
-            <TextBox variant='filled' label='Password' className='passwordBox' InputProps={{disableUnderline: true}}></TextBox>
+            <TextBox name='password' variant='filled' label='Password' type='password' className='passwordBox' InputProps={{disableUnderline: true}} onChange={(e) => this.handleChange(e)}></TextBox>
           </div>
           <div className='checkbox'>
             <PurpleCheckbox></PurpleCheckbox>
             <p className='keepLog'>Keep me logged in</p>
           </div>
-          <LogInButton>Log In</LogInButton>
+          <LogInButton onClick={(e) => this.handleSignIn(e)}>Log In</LogInButton>
           <div className='notMember'>
             <p className='question'>Not a member?</p>
             <Link to='/signup'>

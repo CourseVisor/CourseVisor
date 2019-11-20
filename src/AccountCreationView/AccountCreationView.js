@@ -4,7 +4,6 @@ import './AccountCreationView.scss';
 
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import Checkbox from '@material-ui/core/Checkbox';
 import Container from'@material-ui/core/Container';
 import {withStyles} from '@material-ui/core/styles';
 

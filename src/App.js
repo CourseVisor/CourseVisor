@@ -1,11 +1,10 @@
-import React, { Component } from "react";
-// import logo from './logo.svg';
+import React, {Component} from "react";
 import "./App.css";
-// import firebase from 'firebase/app';
+import firebase from 'firebase/app';
 
 import { BrowserRouter as Router, Route, Link, NavLink, Switch } from "react-router-dom";
 
-import { NavBarView } from "./NavBarView/NavBarView.js";
+import {NavBarView} from "./NavBarView/NavBarView.js";
 import NewReviewView from "./NewReviewView/NewReviewView";
 import HomePageView from "./HomePageView/HomePageView";
 import {SignInView} from './SignInView/SignInView.js';
@@ -14,25 +13,72 @@ import AccountCreationView from "./AccountCreationView/AccountCreationView";
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+
+    };
+  }
+
+  componentDidMount() {
+    this.authUnRegFunc = firebase.auth().onAuthStateChanged((user) => {
+      if(user) {
+
+        console.log('logged in');
+
+        this.setState({
+          user: user,
+        })
+      } else {
+
+        console.log('logged out');
+        this.setState({
+          user: null,
+        })
+      }
+    })
+    // this.userRef = firebase.database().ref("user");
+    // this.userRef.on("value", (snap) => {
+    //   let theUser = snap.val();
+    //   this.setState({ name: theUser });
+  // });
+  }
+
+  componentWillUnmount() {
+    this.authUnRegFunc = null;
+  }
+
+
+  handleSignIn(email, password) {
+    this.setState({errorMessage:null}); //clear old errors
+
+    console.log(email);
+    console.log(password);
+
+    firebase.auth().signInWithEmailAndPassword(email, password)
+      .catch((err) => {
+        console.log(err);
+        this.setState({errorMessage:err.message});
+      })
+  }
+
+  handleSignOut() {
+    this.setState({errorMessage:null}); //clear old errors
+
+    firebase.auth().signOut()
+      .catch((err) => {
+        console.log(err)
+        this.setState({errorMessage:err.message});
+      })
   }
 
   render() {
     let content = null;
 
     content = (
-      // <Router>
-      //   <div>
-      //     <header>
-      //       <NavBarView/>
-
-      //     </header>
-      //   </div>
-      // </Router>
       <Router>
-        <NavBarView />
+        <NavBarView currentUser={this.state.user} signOutCallback={() => this.handleSignOut()}/>
         <Route exact path="/" component={HomePageView} />
-        <Route path='/signin' component={SignInView} />
+        {/* <Route path='/signin' component={SignInView} /> */}
+        <Route path='/signin' render={() => <SignInView signInCallback={(e,p) => this.handleSignIn(e,p)} />} />
         <Route path='/signup' component={AccountCreationView} />
         <Route path="/new-review" component={NewReviewView} />
       </Router>
