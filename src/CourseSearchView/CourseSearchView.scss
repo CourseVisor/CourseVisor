@@ -1,3 +1,5 @@
+@import "../palette.scss";
+
 .course-prefix-number {
   margin: 0;
   padding: 0;
@@ -13,6 +15,22 @@
   padding-right: 2rem;
 }
 
-.MuiTable-root {
-  color: purple
+.results {
+  color: $super-dark-purple;
+
+  padding-bottom: 2rem;
+}
+
+.not-found {
+  text-align: center;
+  color: $super-dark-purple;
+}
+
+.search-query {
+  font-style: bold;
+}
+
+.progress {
+  text-align: center;
+  padding-top: 40%;
 }
