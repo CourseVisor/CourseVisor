@@ -26,7 +26,9 @@ const SubmitInput = withStyles({
 
 const ReviewContainer = withStyles({
   root: {
-    width: "60%"
+    ['@media (min-width:780px)']: {
+      width: "60%"
+    }
   }
 })(Container);
 
