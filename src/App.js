@@ -68,6 +68,7 @@ class App extends Component {
         console.log(err)
         this.setState({errorMessage:err.message});
       })
+
   }
 
   render() {

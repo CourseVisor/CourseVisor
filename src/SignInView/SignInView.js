@@ -11,7 +11,6 @@ import {withStyles} from '@material-ui/core/styles';
 import {NavBarView} from '../NavBarView/NavBarView.js';
 
 import {Link} from "react-router-dom";
-// import undefined from 'firebase/empty-import';
 
 const LogInButton = withStyles({
 
@@ -122,7 +121,7 @@ export class SignInView extends Component {
           <h1>Log In</h1>
           <div className='goldBar'></div>
           <div>
-            <TextBox name='email' variant='filled' label='Username/Email' className='usernameBox' InputProps={{disableUnderline: true}} onChange={(e) => this.handleChange(e)}></TextBox>
+            <TextBox name='email' variant='filled' label='Email' className='usernameBox' InputProps={{disableUnderline: true}} onChange={(e) => this.handleChange(e)}></TextBox>
           </div>
           <div>
             <TextBox name='password' variant='filled' label='Password' type='password' className='passwordBox' InputProps={{disableUnderline: true}} onChange={(e) => this.handleChange(e)}></TextBox>
@@ -145,6 +144,3 @@ export class SignInView extends Component {
 }
 
 export default SignInView;
-
-
-// onClick={() => "location.href='/signup'"}
