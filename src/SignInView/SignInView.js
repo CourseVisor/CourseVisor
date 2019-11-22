@@ -1,132 +1,183 @@
-import React, {Component} from 'react';
-import PropTypes from 'prop-types';
-import './SignInView.scss';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import "./SignInView.scss";
 
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
-import Checkbox from '@material-ui/core/Checkbox';
-import Container from'@material-ui/core/Container';
-import {withStyles} from '@material-ui/core/styles';
+import Button from "@material-ui/core/Button";
+import TextField from "@material-ui/core/TextField";
+import Checkbox from "@material-ui/core/Checkbox";
+import Container from "@material-ui/core/Container";
+import { withStyles } from "@material-ui/core/styles";
 
-import {NavBarView} from '../NavBarView/NavBarView.js';
+import { NavBarView } from "../NavBarView/NavBarView.js";
 
-import {Link} from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
+import firebase from "firebase/app";
+import "firebase/auth";
 
 const LogInButton = withStyles({
-
   text: {
-    fontFamily: 'Roboto',
-    fontWeight: 'bold',
-    fontSize: '12px',
-    lineHeight: '14px',
-    display: 'inline-block',
-    alignItems: 'center',
-    textAlign: 'center',
-    textTransform: 'capitalize',
-    color: '#FFFFFF',
+    fontFamily: "Roboto",
+    fontWeight: "bold",
+    fontSize: "12px",
+    // lineHeight: "14px",
+    display: "inline-block",
+    alignItems: "center",
+    textAlign: "center",
+    textTransform: "capitalize",
+    color: "#FFFFFF",
 
-    width: '11.25rem',
-    height: '2.5rem',
-    top: '7rem',
+    width: "11.25rem",
+    height: "2.5rem",
+    // top: "7rem",
 
-    backgroundColor: '#BD36EC',
-    boxShadow: '2px 2px 4px rgba(0, 0, 0, 0.25)',
-    borderRadius: '20px',
+    backgroundColor: "#BD36EC",
+    boxShadow: "2px 2px 4px rgba(0, 0, 0, 0.25)",
+    borderRadius: "20px"
   },
 
   root: {
+    marginTop: "3rem",
     position: "relative",
-    justifyContent: 'center',
+    justifyContent: "center"
   }
 })(Button);
 
 const SignUpButton = withStyles({
-
   text: {
-    fontFamily: 'Roboto',
-    fontStyle: 'normal',
-    fontWeight: 'normal',
-    fontSize: '12px',
-    lineHeight: '14px',
-    display: 'inline',
-    alignItems: 'center',
-    textAlign: 'center',
-    textTransform: 'capitalize',
+    fontFamily: "Roboto",
+    fontStyle: "normal",
+    fontWeight: "normal",
+    fontSize: "12px",
+    lineHeight: "14px",
+    display: "inline",
+    alignItems: "center",
+    textAlign: "center",
+    textTransform: "capitalize",
 
-    color: '#FAB124',
-  },
+    color: "#FAB124"
+  }
 })(Button);
 
 const LogInContainer = withStyles({
   root: {
     width: "50%",
-    textAlign: 'center',
+    textAlign: "center"
   }
 })(Container);
 
 const TextBox = withStyles({
   root: {
-    border: '5px solid #F3D5FE',
-    overflow: 'hidden',
+    marginTop: "1rem",
+    border: "5px solid #F3D5FE",
+    // overflow: "hidden",
     borderRadius: 4,
-    backgroundColor: '#FFFFFF',  
+    backgroundColor: "#FFFFFF"
   },
   input: {
-    backgroundColor: 'white',
+    backgroundColor: "white"
   }
 })(TextField);
 
 const PurpleCheckbox = withStyles({
   root: {
-    color: '#BD36EC',
-    '&$checked': {
-      color: '#BD36EC',
-      backgroundColor: '#FFFFFF',
+    color: "#BD36EC",
+    "&$checked": {
+      color: "#BD36EC",
+      backgroundColor: "#FFFFFF"
     },
-    float: 'left',
+    float: "left"
   },
-  checked: {},
+  checked: {}
 })(Checkbox);
 
 export class SignInView extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
+
+    this.state = {
+      email: "",
+      password: "",
+      errorMessage: "",
+      submitted: false
+    };
   }
 
-  // this.state = {
-  //   'email': 
-  // }
-  render(){
+  updateEmail = event => {
+    this.setState({ email: event.target.value });
+  };
+
+  updatePassword = event => {
+    this.setState({ password: event.target.value });
+  };
+
+  handleSignIn = event => {
+    event.preventDefault();
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(this.state.email, this.state.password)
+      .then(() => this.setState({ errorMessage: "", submitted: true }))
+      .catch(async err => {
+        console.log(err);
+        this.setState({ errorMessage: err.message });
+      });
+  };
+
+  render() {
+    if (!this.state.errorMessage && this.state.submitted) {
+      return <Redirect push to="/" />;
+    }
     return (
-      <div className='SignInView'>
-        <NavBarView></NavBarView>   
+      <div className="SignInView">
         <LogInContainer>
-          <h1>Log In</h1>
-          <div className='goldBar'></div>
-          <div>
-            <TextBox variant='filled' label='Username/Email' className='usernameBox' InputProps={{disableUnderline: true}}></TextBox>
-          </div>
-          <div>
-            <TextBox variant='filled' label='Password' className='passwordBox' InputProps={{disableUnderline: true}}></TextBox>
-          </div>
-          <div className='checkbox'>
-            <PurpleCheckbox></PurpleCheckbox>
-            <p className='keepLog'>Keep me logged in</p>
-          </div>
-          <LogInButton>Log In</LogInButton>
-          <div className='notMember'>
-            <p className='question'>Not a member?</p>
-            <Link to='/signup'>
-              <SignUpButton>Sign up</SignUpButton>
+          <div className="login">Log In</div>
+          <div className="goldBar"></div>
+          <form>
+            <div>
+              <TextBox
+                name="email"
+                variant="filled"
+                label="Username/Email"
+                className="usernameBox"
+                InputProps={{ disableUnderline: true }}
+                onChange={this.updateEmail}
+              ></TextBox>
+            </div>
+            <div>
+              <TextBox
+                name="password"
+                variant="filled"
+                label="Password"
+                type="password"
+                className="passwordBox"
+                InputProps={{ disableUnderline: true }}
+                onChange={this.updatePassword}
+              ></TextBox>
+            </div>
+            <div className="checkbox">
+              <PurpleCheckbox></PurpleCheckbox>
+              <p className="keepLog">Keep me logged in</p>
+            </div>
+            {this.state.errorMessage && (
+              <div className="error">
+                {this.state.errorMessage}
+              </div>
+            )}
+            <LogInButton onClick={this.handleSignIn} type="submit">
+              Log In
+            </LogInButton>
+          </form>
+          <div className="notMember">
+            <p className="question">Not a member?</p>
+            <Link to="/signup">
+              <SignUpButton onClick={this.handleSignIn}>Sign up</SignUpButton>
             </Link>
           </div>
         </LogInContainer>
       </div>
-    )
+    );
   }
 }
 
 export default SignInView;
-
 
 // onClick={() => "location.href='/signup'"}
