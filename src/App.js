@@ -10,6 +10,7 @@ import NewReviewView from "./NewReviewView/NewReviewView";
 import HomePageView from "./HomePageView/HomePageView";
 import {SignInView} from './SignInView/SignInView.js';
 import AccountCreationView from "./AccountCreationView/AccountCreationView";
+import OverAllRatingView from "./OverAllRatingView/OverAllRatingView";
 
 class App extends Component {
   constructor(props) {
@@ -35,6 +36,7 @@ class App extends Component {
         <Route path='/signin' component={SignInView} />
         <Route path='/signup' component={AccountCreationView} />
         <Route path="/new-review" component={NewReviewView} />
+        <Route path='/overall-review' component={OverAllRatingView} />
       </Router>
     )
     return content;
