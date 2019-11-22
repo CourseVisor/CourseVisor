@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import "./CourseSearchView.scss";
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/database";
@@ -34,7 +34,7 @@ const CourseTableCell = withStyles({
 
 const TableContainer = withStyles({
   root: {
-    ["@media (min-width:780px)"]: {
+    "@media (min-width:960px)": {
       width: "60%"
     },
     paddingTop: "4rem"
@@ -73,8 +73,7 @@ class CourseSearchView extends Component {
         .database()
         .ref(`courseTeacherReview/${prefix}/${number}`)
         .once("value");
-      // checks if course has instructor
-      if (snapshot.val() && snapshot.val().instructors) {
+      if (snapshot.val()) {
         courses.push({
           course: snapshot.val().course,
           courseTitle: snapshot.val().courseTitle
@@ -87,13 +86,10 @@ class CourseSearchView extends Component {
         .once("value");
       snapshot.val() &&
         Object.values(snapshot.val()).forEach(course => {
-          // checks if course has instructor
-          if (course.instructors) {
-            courses.push({
-              course: course.course,
-              courseTitle: course.courseTitle
-            });
-          }
+          courses.push({
+            course: course.course,
+            courseTitle: course.courseTitle
+          });
         });
     }
     this.setState({ courses: courses, loading: false });
@@ -118,15 +114,15 @@ class CourseSearchView extends Component {
               <Table>
                 <TableHead>
                   <TableRow>
-                    <HeadTableCell>Course</HeadTableCell>
-                    <HeadTableCell>Course Title</HeadTableCell>
+                    <HeadTableCell size="small">Course</HeadTableCell>
+                    <HeadTableCell size="small">Course Title</HeadTableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
                   {this.state.courses.map(course => {
                     return (
                       <TableRow>
-                        <CourseTableCell>
+                        <CourseTableCell size="small">
                           <div className="course-icon">
                             <svg
                               width="30"
@@ -148,9 +144,13 @@ class CourseSearchView extends Component {
                               />
                             </svg>
                           </div>
-                          <div className="course-prefix-number">{course.course}</div>
+                          <Link to={`/course/${course.course}`}>
+                            <div className="course-prefix-number">{course.course}</div>
+                          </Link>
                         </CourseTableCell>
-                        <CourseTableCell>{course.courseTitle}</CourseTableCell>
+                        <Link to={`/course/${course.course}`}>
+                          <CourseTableCell>{course.courseTitle}</CourseTableCell>
+                        </Link>
                       </TableRow>
                     );
                   })}
@@ -161,7 +161,10 @@ class CourseSearchView extends Component {
                 <h2>Oops, sorry!</h2>
                 <div>
                   Your search <span className="search-query">"{this.state.query.toUpperCase()}"</span> did not match any
-                  courses. Please make sure you entered in the correct prefix and code.
+                  courses.
+                </div>
+                <div>
+                  Please make sure you entered in the correct prefix and code.
                 </div>
               </div>
             )}

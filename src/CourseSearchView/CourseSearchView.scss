@@ -33,3 +33,20 @@
   text-align: center;
   padding-top: 40vh;
 }
+
+a {
+  text-decoration: none;
+  color: $super-dark-purple;
+}
+
+a:visited {
+  color: $super-dark-purple;
+}
+
+a:hover {
+  color: $light-purple;
+}
+
+a:active {
+  color: $light-purple;
+}
