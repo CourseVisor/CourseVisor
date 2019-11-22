@@ -9,11 +9,8 @@ import NewReviewView from "./NewReviewView/NewReviewView";
 import HomePageView from "./HomePageView/HomePageView";
 import { SignInView } from "./SignInView/SignInView.js";
 import AccountCreationView from "./AccountCreationView/AccountCreationView";
-<<<<<<< HEAD
 import CourseSearchView from "./CourseSearchView/CourseSearchView";
-=======
 import OverAllRatingView from "./OverAllRatingView/OverAllRatingView";
->>>>>>> master
 
 class App extends Component {
   constructor(props) {
