@@ -1,0 +1,75 @@
+.rating-container {
+    padding-top: 4rem;
+}
+
+#overallBanner {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19px;
+    color: #42005A;
+    padding-left: 3em;
+    padding-right: 3em;
+}
+
+
+    #overallRatCont {
+        display: flex;
+        flex-direction: row;
+        // flex-wrap: wrap;
+        
+        box-sizing: border-box;
+        padding-top: 4rem;
+        // position: absolute;
+        align-items: baseline;
+        justify-content: space-around;
+    }
+
+
+
+
+
+
+#leftLine {
+    width: 25em;
+    height: 0;
+    border: solid #FAB124;
+}
+
+#rightLine {
+    width: 25em;
+    height: 0;
+    border: solid #FAB124;
+}
+
+
+.gradingTitle {
+    display: flex;
+    flex-direction: row;
+    
+}
+
+.oneCriteria {
+    display: flex;
+    flex-direction: column;
+    // padding-top: 8rem;
+    padding-left: 0rem;
+    align-items: center;
+}
+
+
+.gradingTitles {
+    padding-right: 0;
+    margin-right: 0;
+}
+
+.gradingContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+
+
+
