@@ -16,13 +16,19 @@ import {
   CircularProgress
 } from "@material-ui/core";
 import { withStyles } from "@material-ui/styles";
-import { purple } from "@material-ui/core/colors";
-import { fontWeight } from "@material-ui/system";
+
+const HeadTableCell = withStyles({
+  root: {
+    "border-top": "1px solid",
+    borderColor: "#F7E173"
+  }
+})(TableCell);
 
 const CourseTableCell = withStyles({
   root: {
     color: "#42005A",
-    fontWeight: "bold"
+    fontWeight: "bold",
+    border: "none"
   }
 })(TableCell);
 
@@ -49,7 +55,7 @@ class CourseSearchView extends Component {
   }
 
   search = async () => {
-    this.setState({loading: true});
+    this.setState({ loading: true });
     let prefix = this.state.query.split(/\d/)[0].toUpperCase();
     // delete trailing space
     if (prefix.slice(prefix.length - 1, prefix.length) == " ") {
@@ -99,7 +105,7 @@ class CourseSearchView extends Component {
       <div className="CourseSearchView">
         {this.state.loading ? (
           <div className="progress">
-            <CircularProgress color="#42005A"/>
+            <CircularProgress color="inherit" />
           </div>
         ) : (
           <TableContainer>
@@ -112,8 +118,8 @@ class CourseSearchView extends Component {
               <Table>
                 <TableHead>
                   <TableRow>
-                    <CourseTableCell>Course</CourseTableCell>
-                    <CourseTableCell>Course Title</CourseTableCell>
+                    <HeadTableCell>Course</HeadTableCell>
+                    <HeadTableCell>Course Title</HeadTableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
