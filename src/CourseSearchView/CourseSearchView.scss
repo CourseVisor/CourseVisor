@@ -1,0 +1,52 @@
+@import "../palette.scss";
+
+.course-prefix-number {
+  margin: 0;
+  padding: 0;
+  vertical-align: middle;
+  display: inline-block;
+}
+
+.course-icon {
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+  vertical-align: middle;
+  padding-right: 2rem;
+}
+
+.results {
+  color: $super-dark-purple;
+  padding-bottom: 2rem;
+}
+
+.not-found {
+  text-align: center;
+  color: $super-dark-purple;
+}
+
+.search-query {
+  font-style: bold;
+}
+
+.progress {
+  text-align: center;
+  padding-top: 40vh;
+}
+
+a {
+  text-decoration: none;
+  color: $super-dark-purple;
+}
+
+a:visited {
+  color: $super-dark-purple;
+}
+
+a:hover {
+  color: $light-purple;
+}
+
+a:active {
+  color: $light-purple;
+}
