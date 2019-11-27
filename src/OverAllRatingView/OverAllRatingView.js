@@ -19,9 +19,9 @@ class OverAllRatingView extends Component {
     this.state = {
       course: "",
       instructor: "",
-      workloadRating: 0,
-      gradingRating: 0,
-      instructorRating: 0,
+      workloadRating: this.props.workload,
+      gradingRating: this.props.grading,
+      instructorRating: this.props.instructor,
       validate: null
     };
   }

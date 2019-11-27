@@ -12,6 +12,7 @@ import AccountCreationView from "./AccountCreationView/AccountCreationView";
 import CourseSearchView from "./CourseSearchView/CourseSearchView";
 import OverAllRatingView from "./OverAllRatingView/OverAllRatingView";
 import InstructorView from "./InstructorView/InstructorView";
+import ReviewView from "./ReviewView/ReviewView";
 
 class App extends Component {
   constructor(props) {
@@ -77,7 +78,8 @@ class App extends Component {
         <Route exact path="/" component={HomePageView} />
         <Route path="/signin" component={SignInView} />
         <Route path="/signup" component={AccountCreationView} />
-        <Route path="/new-review" component={() => <NewReviewView currentUser={this.state.user} />} />
+        <Route path="/new-review/:courseName?" component={NewReviewView} />
+        <Route path="/review/:courseName/:courseTitle/:instructor" component={ReviewView} />
         <Route path="/results/:query" component={CourseSearchView} />
         <Route path="/course/:courseName" component={InstructorView} />
         <Route path="/overall-review" component={OverAllRatingView} />

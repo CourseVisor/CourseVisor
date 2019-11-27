@@ -8,7 +8,8 @@ import {
   Tooltip,
   IconButton,
   Grid,
-  Button
+  Button,
+  CircularProgress
 } from "@material-ui/core";
 import { Redirect, Link } from "react-router-dom";
 import HelpOutlineOutlinedIcon from "@material-ui/icons/HelpOutlineOutlined";
@@ -70,8 +71,11 @@ const SubmitButton = withStyles({
 class NewReviewView extends Component {
   constructor(props) {
     super(props);
+    console.log(this.props.match.params.courseName);
     this.state = {
-      course: "",
+      loading: true,
+      currentUser: null,
+      course: this.props.match.params.courseName ? this.props.match.params.courseName : "",
       instructor: "",
       workloadRating: 0,
       gradingRating: 0,
@@ -80,6 +84,19 @@ class NewReviewView extends Component {
       clicked: false,
       validate: null
     };
+  }
+  componentDidMount() {
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.setState({ currentUser: user });
+      } else {
+        this.setState({ currentUser: null });
+      }
+
+      if (this.state.loading) {
+        this.setState({ loading: false });
+      }
+    });
   }
   updateCourse = event => {
     this.setState({ course: event.target.value });
@@ -131,7 +148,7 @@ class NewReviewView extends Component {
       ratingGrading: this.state.gradingRating,
       ratingInstructor: this.state.instructorRating,
       comment: this.state.comments,
-      username: this.props.currentUser.displayName
+      username: this.state.currentUser.displayName
     };
     firebase
       .database()
@@ -139,7 +156,14 @@ class NewReviewView extends Component {
       .push(instructorReview);
   };
   render() {
-    if (!this.props.currentUser) {
+    if (this.state.loading) {
+      return (
+        <div className="progress">
+          <CircularProgress color="inherit" />
+        </div>
+      )
+    }
+    if (!this.state.currentUser) {
       return <Redirect push to="/signin" />;
     }
     return (
@@ -151,6 +175,7 @@ class NewReviewView extends Component {
               <SubmitInput
                 required
                 label="Course"
+                defaultValue={this.state.course}
                 placeholder="Please enter the course prefix and code, e.g. INFO 442"
                 variant="outlined"
                 onChange={this.updateCourse}
