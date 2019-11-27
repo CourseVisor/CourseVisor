@@ -24,6 +24,7 @@ class ReviewView extends Component {
       courseName: this.props.match.params.courseName,
       courseTitle: this.props.match.params.courseTitle,
       instructor: this.props.match.params.instructor.toUpperCase(),
+      reviews: [],
       loading: false,
       workloadAvg: 0,
       gradingAvg: 0,
@@ -53,14 +54,16 @@ class ReviewView extends Component {
     let totalWorkload = 0;
     let totalGrading = 0;
     let totalInstructor = 0;
+    const allReviews = [];
     const reviewKeys = Object.keys(reviews);
     reviewKeys.forEach(review => {
-      console.log(reviews[review])
+      allReviews.push(reviews[review]);
       totalWorkload += reviews[review].ratingWorkload;
       totalGrading += reviews[review].ratingGrading;
       totalInstructor += reviews[review].ratingInstructor;
     });
     this.setState({
+      reviews: allReviews,
       workloadAvg: totalWorkload / reviewKeys.length,
       gradingAvg: totalGrading / reviewKeys.length,
       instructorAvg: totalInstructor / reviewKeys.length
@@ -76,18 +79,21 @@ class ReviewView extends Component {
           </div>
         ) : (
             <ReviewContainer>
-              <Grid container>
-                <Grid item md={10} xs={12}>
-                  <h2>{this.state.courseName} {this.state.courseTitle}</h2>
-                </Grid>
-                <Grid item md={2} xs={12}>
+              <div className="top-container">
+                <h3 className="heading">{this.state.courseName} {this.state.courseTitle}</h3>
+                <div className="container-right">
                   <Link to={reviewRoute}>
                     <SubmitButtonView />
                   </Link>
-                </Grid>
-              </Grid>
+                </div>
+              </div>
               <div className="instructor-name">{this.state.instructor.toLowerCase()}</div>
               <OverAllRatingView workload={this.state.workloadAvg} grading={this.state.gradingAvg} instructor={this.state.instructorAvg} />
+              <div className='all-reviews'>
+                <div className='left-line'></div>
+                <h5 className='review-banner'>{this.state.reviews.length} Student Ratings & Reviews</h5>
+                <div className='right-line'></div>
+              </div>
             </ReviewContainer >
           )}
       </div>

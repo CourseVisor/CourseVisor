@@ -32,7 +32,7 @@ class OverAllRatingView extends Component {
   render() {
     return (
       <div className='OverAllRatingView'>
-        <Container className="rating-container">
+        {/* <Container className="rating-container"> */}
           <div id='overallRatCont'>
             <div id='leftLine'></div>
             <h5 id='overallBanner'>Overall Ratings</h5>
@@ -57,7 +57,7 @@ class OverAllRatingView extends Component {
               <StarRatings
                       rating={this.state.workloadRating}
                       starDimension="2rem"
-                      starRatedColor="#7800A2"
+                      starRatedColor="#F9D51F"
                       starHoverColor="#D88AF3"
                       // changeRating={this.changeWorkloadRating}
                       numberOfStars={5}
@@ -80,7 +80,7 @@ class OverAllRatingView extends Component {
               <StarRatings
                       rating={this.state.gradingRating}
                       starDimension="2rem"
-                      starRatedColor="#7800A2"
+                      starRatedColor="#F9D51F"
                       starHoverColor="#D88AF3"
                       // changeRating={this.changeWorkloadRating}
                       numberOfStars={5}
@@ -103,7 +103,7 @@ class OverAllRatingView extends Component {
               <StarRatings
                       rating={this.state.instructorRating}
                       starDimension="2rem"
-                      starRatedColor="#7800A2"
+                      starRatedColor="#F9D51F"
                       starHoverColor="#D88AF3"
                       // changeRating={this.changeWorkloadRating}
                       numberOfStars={5}
@@ -114,7 +114,7 @@ class OverAllRatingView extends Component {
 
 
           </div>
-        </Container>
+        {/* </Container> */}
       </div>
 
 
