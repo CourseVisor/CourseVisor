@@ -111,11 +111,19 @@ export class NavBarView extends Component {
       return (
         <nav className="navBarView">
           <Container>
-              <NavLink exact to="/">
-                <img className="logo" src={logo} alt="CourseVisor logo"></img>
-              </NavLink>
+            <NavLink exact to="/">
+              <img className="logo" src={logo} alt="CourseVisor logo"></img>
+            </NavLink>
             <div className="nav-container-right">
-              <span className="username">Hi, {this.props.currentUser.displayName}</span>
+              <div className="head-icon">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="10" cy="10" r="10" fill="white" />
+                  <circle cx="10" cy="6" r="3" fill="#42005A" />
+                  <path d="M10 17.3C7.5 17.3 5.29 16.02 4 14.08C4.03 12.09 8 11 10 11C11.99 11 15.97 12.09 16 14.08C14.71 16.02 12.5 17.3 10 17.3Z" fill="#42005A" />
+                </svg>
+              </div>
+
+              <div className="username">Hi, {this.props.currentUser.displayName}</div>
               <SignOutButton className="sign-out-button" onClick={this.handleSignOut}>Sign Out</SignOutButton>
             </div>
           </Container>

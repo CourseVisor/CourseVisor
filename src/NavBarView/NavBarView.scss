@@ -29,11 +29,18 @@
     float: right;
 }
 .username {
-    // display: inline-block;
-    vertical-align: middle;
+    display: inline-block;
+    // vertical-align: middle;
     // display: flex;
     // padding-top: 2rem;
     padding-right: 2rem;
     color: white;
     // float: right;
+}
+
+.head-icon {
+    margin: 0;
+    display: inline-block;
+    // vertical-align: middle;
+    padding-right: 1rem;
 }

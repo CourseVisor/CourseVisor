@@ -71,7 +71,6 @@ class InstructorView extends Component {
       }
       instructors.push(instructor);
     })
-    console.log(instructors);
     this.setState({ courseTitle: snapshot.courseTitle, instructors: instructors, loading: false })
   }
   render() {
@@ -88,7 +87,6 @@ class InstructorView extends Component {
               </div>
               <InstructorContainer>
                 {this.state.instructors.map(instructor => {
-                  // return <p>{instructor.name}</p>
                   return (
                     <InstructorCard key={instructor.name}>
                       <InstructorCardContent>
