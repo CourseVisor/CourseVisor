@@ -1,3 +1,4 @@
+import { withStyles } from "@material-ui/styles";
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './ReviewView.scss';
@@ -5,8 +6,17 @@ import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/database";
 import OverAllRatingView from '../OverAllRatingView/OverAllRatingView';
-import { CircularProgress, Container } from '@material-ui/core';
+import { CircularProgress, Container, Grid } from '@material-ui/core';
+import SubmitButtonView from '../SubmitButtonView/SubmitButtonView';
+import { Link } from "react-router-dom";
 
+const ReviewContainer = withStyles({
+  root: {
+    ['@media (min-width:780px)']: {
+      width: "60%"
+    }
+  }
+})(Container);
 class ReviewView extends Component {
   constructor(props) {
     super(props);
@@ -57,6 +67,7 @@ class ReviewView extends Component {
     })
   }
   render() {
+    const reviewRoute = `/new-review/${this.state.courseName}/${this.state.instructor}`
     return (
       <div className="ReviewView">
         {this.state.loading ? (
@@ -64,11 +75,20 @@ class ReviewView extends Component {
             <CircularProgress color="inherit" />
           </div>
         ) : (
-            <Container>
-              <h2>{this.state.courseName} {this.state.courseTitle}</h2>
+            <ReviewContainer>
+              <Grid container>
+                <Grid item md={10} xs={12}>
+                  <h2>{this.state.courseName} {this.state.courseTitle}</h2>
+                </Grid>
+                <Grid item md={2} xs={12}>
+                  <Link to={reviewRoute}>
+                    <SubmitButtonView />
+                  </Link>
+                </Grid>
+              </Grid>
               <div className="instructor-name">{this.state.instructor.toLowerCase()}</div>
               <OverAllRatingView workload={this.state.workloadAvg} grading={this.state.gradingAvg} instructor={this.state.instructorAvg} />
-            </Container>
+            </ReviewContainer >
           )}
       </div>
     )

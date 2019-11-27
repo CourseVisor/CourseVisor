@@ -71,18 +71,19 @@ const SubmitButton = withStyles({
 class NewReviewView extends Component {
   constructor(props) {
     super(props);
-    console.log(this.props.match.params.courseName);
     this.state = {
       loading: true,
       currentUser: null,
       course: this.props.match.params.courseName ? this.props.match.params.courseName : "",
-      instructor: "",
+      courseTitle: "",
+      instructor: this.props.match.params.instructor ? this.formatInstructor(this.props.match.params.instructor) : "",
       workloadRating: 0,
       gradingRating: 0,
       instructorRating: 0,
       comments: "",
       clicked: false,
-      validate: null
+      validate: null,
+      errorMessage: ""
     };
   }
   componentDidMount() {
@@ -92,13 +93,15 @@ class NewReviewView extends Component {
       } else {
         this.setState({ currentUser: null });
       }
-
       if (this.state.loading) {
         this.setState({ loading: false });
       }
     });
   }
-  updateCourse = event => {
+  goBack = () => {
+    this.props.history.goBack();
+  }
+  updateCourse = async event => {
     this.setState({ course: event.target.value });
   };
   updateInstructor = event => {
@@ -125,7 +128,7 @@ class NewReviewView extends Component {
     });
   };
   validateForm = async () => {
-    this.setState({ clicked: true });
+    this.setState({ clicked: true, errorMessage: "* Please complete all the required fields" });
     const condition =
       this.state.workloadRating === 0 ||
       this.state.gradingRating === 0 ||
@@ -135,11 +138,20 @@ class NewReviewView extends Component {
     await this.setState({
       validate: condition ? false : true
     });
+    const prefix = this.state.course.toUpperCase().split(" ")[0];
+    const number = this.state.course.toUpperCase().split(" ")[1];
+    const snapshot =
+      prefix && number &&
+      await (firebase.database().ref(`courseTeacherReview/${prefix}/${number}`).once("value"));
+    if (!snapshot || !snapshot.val()) {
+      await this.setState({ validate: false, errorMessage: "* Course does not exist in the database" });
+    }
     if (this.state.validate) {
-      this.addToFirebase();
+      await this.addToFirebase();
+      this.props.history.push(`/review/${this.state.course.toUpperCase()}/${snapshot.val().courseTitle}/${this.state.instructor.toUpperCase()}`);
     }
   };
-  addToFirebase = () => {
+  addToFirebase = async () => {
     const prefix = this.state.course.toUpperCase().split(" ")[0];
     const number = this.state.course.toUpperCase().split(" ")[1];
     const instructor = this.state.instructor.toUpperCase();
@@ -150,11 +162,18 @@ class NewReviewView extends Component {
       comment: this.state.comments,
       username: this.state.currentUser.displayName
     };
-    firebase
+    await firebase
       .database()
       .ref(`courseTeacherReview/${prefix}/${number}/instructors/${instructor}/reviews`)
       .push(instructorReview);
   };
+  formatInstructor = (instructor) => {
+    let result = "";
+    instructor && instructor.toLowerCase().split(" ").forEach(word => {
+      result += word.charAt(0).toUpperCase() + word.slice(1) + " "
+    });
+    return result.trim();
+  }
   render() {
     if (this.state.loading) {
       return (
@@ -185,6 +204,7 @@ class NewReviewView extends Component {
               <SubmitInput
                 required
                 label="Instructor"
+                defaultValue={this.state.instructor}
                 placeholder="Please enter the instructor's full name"
                 variant="outlined"
                 onChange={this.updateInstructor}
@@ -290,14 +310,14 @@ class NewReviewView extends Component {
               />
             </div>
             <div className="buttons">
-              <Link to="/">
-                <CancelButton variant="outlined">Cancel</CancelButton>
-              </Link>
+              {/* <Link to="/"> */}
+              <CancelButton variant="outlined" onClick={this.goBack}>Cancel</CancelButton>
+              {/* </Link> */}
               <SubmitButton onClick={this.validateForm}>Submit</SubmitButton>
             </div>
             {this.state.clicked && !this.state.validate && (
               <span className="error-message">
-                * Please complete all the required fields
+                {this.state.errorMessage}
               </span>
             )}
           </form>
