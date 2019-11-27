@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Button from "@material-ui/core/Button";
 import { withStyles } from "@material-ui/core/styles";
-import SubmitButtonView from "../submitButtonView/SubmitButtonView.js";
+import SubmitButtonView from "../SubmitButtonView/SubmitButtonView.js";
 import "./HomePageView.scss";
 import { Link } from "react-router-dom";
 

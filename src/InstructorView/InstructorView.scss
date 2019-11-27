@@ -1,0 +1,48 @@
+@import "../palette.scss";
+
+.instructor-name {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.instructor-icon {
+  margin: 0;
+  display: inline-block;
+  vertical-align: middle;
+  padding-right: 1rem;
+}
+
+.course-header {
+  text-align: center;
+}
+
+.course-title {
+  padding-top: 2rem;
+  text-align: center;
+  color: $super-dark-purple;
+  display: inline-block;
+}
+
+.course-title:after {
+  text-align: center;
+  content: '';
+  display: block;
+  border-top: 4px solid $medium-orange;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.line {
+  border: 2px solid $medium-orange;
+}
+
+.no-instructor {
+  font-size: .75rem;
+  color: $super-dark-purple;
+  line-height: 1.5;
+}
+
+.progress {
+  text-align: center;
+  padding-top: 40vh;
+}

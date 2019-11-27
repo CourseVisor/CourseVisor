@@ -282,7 +282,7 @@ class NewReviewView extends Component {
   }
 }
 NewReviewView.propTypes = {
-  currentUser: Object
+  // currentUser: Object
 };
 
 export default NewReviewView;

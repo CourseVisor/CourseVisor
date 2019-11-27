@@ -22,16 +22,16 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.authUnRegFunc = firebase.auth().onAuthStateChanged(user => {
+    this.authUnRegFunc = firebase.auth().onAuthStateChanged(async user => {
       if (user) {
         console.log("logged in");
         console.log(user);
-        this.setState({
+        await this.setState({
           user: user
         });
       } else {
         console.log("logged out");
-        this.setState({
+        await this.setState({
           user: null
         });
       }
