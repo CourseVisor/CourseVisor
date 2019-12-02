@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import './SearchBarView.css';
+import './SearchBarView.scss';
+import TextField from "@material-ui/core/TextField";
+import { withStyles } from "@material-ui/core/styles";
+import SearchIcon from '@material-ui/icons/Search';
 //Enter course prefix and code to search for a course
 
 const styles4SearchBar = {
@@ -11,8 +14,7 @@ const styles4SearchBar = {
 const TextBox = withStyles({
   root: {
     width: "45%",
-    marginTop: "1rem",
-    border: "5px solid #F3D5FE",
+    border: "2px solid #F3D5FE",
     // overflow: "hidden",
     borderRadius: 4,
     backgroundColor: "#FFFFFF"
@@ -47,7 +49,7 @@ class SearchBarView extends Component {
               <TextBox
                 name="seartchingFor"
                 variant="filled"
-                label="Enter Course Prefix and Code (ex. INFO 442)"
+                label="Enter Course Prefix and Code"
                 className="searchQuery"
                 InputProps={{ disableUnderline: true }}
                 onChange={this.updateQuery}

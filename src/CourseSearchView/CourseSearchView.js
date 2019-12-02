@@ -16,6 +16,7 @@ import {
   CircularProgress
 } from "@material-ui/core";
 import { withStyles } from "@material-ui/styles";
+import SearchBarView from "../SearchBarView/SearchBarView";
 
 const HeadTableCell = withStyles({
   root: {
@@ -114,9 +115,10 @@ class CourseSearchView extends Component {
             <CircularProgress color="inherit" />
           </div>
         ) : (
-            <TableContainer>
-              <div className="results">
-                {this.state.courses.length} search
+          <TableContainer>
+            <SearchBarView />
+            <div className="results">
+              {this.state.courses.length} search
               {this.state.courses.length > 1 ? " results " : " result "}
                 for "{this.state.query.toUpperCase()}"
             </div>

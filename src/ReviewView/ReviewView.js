@@ -9,6 +9,7 @@ import OverAllRatingView from '../OverAllRatingView/OverAllRatingView';
 import { CircularProgress, Container, Grid } from '@material-ui/core';
 import SubmitButtonView from '../SubmitButtonView/SubmitButtonView';
 import { Link } from "react-router-dom";
+import SearchBarView from "../SearchBarView/SearchBarView";
 
 const ReviewContainer = withStyles({
   root: {
@@ -79,6 +80,9 @@ class ReviewView extends Component {
           </div>
         ) : (
             <ReviewContainer>
+              <div className="searchBarReview">
+                <SearchBarView />
+              </div>
               <div className="top-container">
                 <h3 className="heading">{this.state.courseName} {this.state.courseTitle}</h3>
                 <div className="container-right">
