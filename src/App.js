@@ -11,6 +11,8 @@ import { SignInView } from "./SignInView/SignInView.js";
 import AccountCreationView from "./AccountCreationView/AccountCreationView";
 import CourseSearchView from "./CourseSearchView/CourseSearchView";
 import OverAllRatingView from "./OverAllRatingView/OverAllRatingView";
+import InstructorView from "./InstructorView/InstructorView";
+import ReviewView from "./ReviewView/ReviewView";
 
 class App extends Component {
   constructor(props) {
@@ -21,16 +23,16 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.authUnRegFunc = firebase.auth().onAuthStateChanged(user => {
+    this.authUnRegFunc = firebase.auth().onAuthStateChanged(async user => {
       if (user) {
         console.log("logged in");
         console.log(user);
-        this.setState({
+        await this.setState({
           user: user
         });
       } else {
         console.log("logged out");
-        this.setState({
+        await this.setState({
           user: null
         });
       }
@@ -76,8 +78,10 @@ class App extends Component {
         <Route exact path="/" component={HomePageView} />
         <Route path="/signin" component={SignInView} />
         <Route path="/signup" component={AccountCreationView} />
-        <Route path="/new-review" component={() => <NewReviewView currentUser={this.state.user} />} />
+        <Route path="/new-review/:courseName?/:instructor?" component={NewReviewView} />
+        <Route path="/review/:courseName/:courseTitle/:instructor" component={ReviewView} />
         <Route path="/results/:query" component={CourseSearchView} />
+        <Route path="/course/:courseName" component={InstructorView} />
         <Route path="/overall-review" component={OverAllRatingView} />
       </Router>
     );

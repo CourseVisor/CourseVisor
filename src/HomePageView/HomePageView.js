@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import TextField from "@material-ui/core/TextField";
 import { withStyles } from "@material-ui/core/styles";
-import SubmitButtonView from "../submitButtonView/SubmitButtonView.js";
+import SubmitButtonView from "../SubmitButtonView/SubmitButtonView.js";
 import "./HomePageView.scss";
 import { Link } from "react-router-dom";
 import SearchIcon from '@material-ui/icons/Search';
