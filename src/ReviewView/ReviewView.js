@@ -10,11 +10,12 @@ import { CircularProgress, Container, Grid } from '@material-ui/core';
 import SubmitButtonView from '../SubmitButtonView/SubmitButtonView';
 import { Link } from "react-router-dom";
 import SearchBarView from "../SearchBarView/SearchBarView";
+import IndividualReviewView from "../IndividualReviewView/IndividualReviewView";
 
 const ReviewContainer = withStyles({
   root: {
     ['@media (min-width:780px)']: {
-      width: "60%"
+      width: "80%"
     }
   }
 })(Container);
@@ -98,6 +99,17 @@ class ReviewView extends Component {
                 <h5 className='review-banner'>{this.state.reviews.length} Student Ratings & Reviews</h5>
                 <div className='right-line'></div>
               </div>
+              {this.state.reviews.map(review => {
+                return (
+                  <div>
+                    <IndividualReviewView username={review.username} workload={review.ratingWorkload} grading={review.ratingGrading} instructor={review.ratingInstructor} comment={review.comment}/>
+                    <div className='full-line'></div>
+                  </div>
+                  )
+              })}
+              <br />
+              <br />
+              <br />
             </ReviewContainer >
           )}
       </div>
