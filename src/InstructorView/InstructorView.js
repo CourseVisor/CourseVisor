@@ -8,6 +8,7 @@ import { Card, CardContent, Typography, CardActions, Container, CircularProgress
 import { withStyles } from "@material-ui/styles";
 import SubmitButtonView from '../SubmitButtonView/SubmitButtonView';
 import { Link } from "react-router-dom";
+import SearchBarView from "../SearchBarView/SearchBarView";
 
 const InstructorCard = withStyles({
   root: {
@@ -84,6 +85,9 @@ class InstructorView extends Component {
           </div>
         ) : (
             <Container>
+              <div className="searchBarInstructor">
+                <SearchBarView />
+              </div>
               <div className="course-header">
                 <h2 className="course-title">{this.state.courseName} {this.state.courseTitle}</h2>
               </div>
