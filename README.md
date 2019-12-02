@@ -1,6 +1,10 @@
-# CourseVisor
+# [CourseVisor](https://coursevisor.firebaseapp.com/)
+
+Our website is deployed [here](https://coursevisor.firebaseapp.com/).
 
 Mission statement: Optimize student learning through student-centered information
+
+
 
 Roles:
 * CEO: Alex Huang
