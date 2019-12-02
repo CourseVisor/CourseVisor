@@ -14,6 +14,9 @@ const InstructorCard = withStyles({
   root: {
     textAlign: "center",
     marginBottom: "2rem",
+    "&:hover": {
+      backgroundColor: "#E8E8E8"
+    }
   }
 })(Card);
 
