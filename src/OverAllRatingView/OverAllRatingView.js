@@ -52,7 +52,7 @@ class OverAllRatingView extends Component {
                 </Tooltip>
               </div>
               <div>
-                <p>{this.state.workloadRating} / 5</p>
+                <p>{this.state.workloadRating.toFixed(2)} / 5</p>
               </div>
               <StarRatings
                       rating={this.state.workloadRating}
@@ -75,7 +75,7 @@ class OverAllRatingView extends Component {
                 </Tooltip>
               </div>
               <div>
-                <p>{this.state.gradingRating} / 5</p>
+                <p>{this.state.gradingRating.toFixed(2)} / 5</p>
               </div>
               <StarRatings
                       rating={this.state.gradingRating}
@@ -98,7 +98,7 @@ class OverAllRatingView extends Component {
                 </Tooltip>
               </div>
               <div>
-                <p>{this.state.instructorRating} / 5</p>
+                <p>{this.state.instructorRating.toFixed(2)} / 5</p>
               </div>
               <StarRatings
                       rating={this.state.instructorRating}
