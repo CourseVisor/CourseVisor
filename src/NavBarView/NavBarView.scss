@@ -27,6 +27,8 @@
     // flex-direction: row-reverse;
     // padding-right: 2rem;
     float: right;
+    align-items: center;
+    display: flex;
 }
 .username {
     display: inline-block;
@@ -43,4 +45,5 @@
     display: inline-block;
     // vertical-align: middle;
     padding-right: 1rem;
+    padding-top: 4px;
 }
