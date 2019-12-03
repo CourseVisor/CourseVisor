@@ -169,7 +169,7 @@ export class SignInView extends Component {
           <div className="notMember">
             <p className="question">Not a member?</p>
             <Link to="/signup">
-              <SignUpButton onClick={this.handleSignIn}>Sign up</SignUpButton>
+              <SignUpButton>Sign up</SignUpButton>
             </Link>
           </div>
         </LogInContainer>
