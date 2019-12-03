@@ -71,13 +71,17 @@ class App extends Component {
   //     })
   // }
 
+  updateUser = (user) => {
+    this.setState({ user, user })
+  }
+
   render() {
     return (
       <Router>
         <NavBarView currentUser={this.state.user} />
         <Route exact path="/" component={HomePageView} />
         <Route path="/signin" component={SignInView} />
-        <Route path="/signup" component={AccountCreationView} />
+        <Route path="/signup" render={(props) => <AccountCreationView {...props} updateUser={this.updateUser} />} />
         <Route path="/new-review/:courseName?/:instructor?" component={NewReviewView} />
         <Route path="/review/:courseName/:courseTitle/:instructor" component={ReviewView} />
         <Route path="/results/:query" component={CourseSearchView} />

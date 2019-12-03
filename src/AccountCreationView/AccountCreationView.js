@@ -125,8 +125,9 @@ export class AccountCreationView extends Component {
             console.log(newUser);
             await newUser.user.updateProfile({ displayName: this.state.username });
             console.log(newUser.user);
-            this.props.history.push("/");
             firebase.database().ref("usernames").child(newUser.user.uid).set(this.state.username)
+            this.props.updateUser(newUser.user)
+            this.props.history.push("/");
           }
         } catch (error) {
           this.setState({ error: error.message });
