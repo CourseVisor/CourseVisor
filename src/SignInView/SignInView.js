@@ -19,7 +19,7 @@ const LogInButton = withStyles({
     fontFamily: "Roboto",
     fontWeight: "bold",
     fontSize: "12px",
-    lineHeight: "14px",
+    // lineHeight: "14px",
     display: "inline-block",
     alignItems: "center",
     textAlign: "center",
@@ -28,7 +28,7 @@ const LogInButton = withStyles({
 
     width: "11.25rem",
     height: "2.5rem",
-    top: "7rem",
+    // top: "7rem",
 
     backgroundColor: "#BD36EC",
     boxShadow: "2px 2px 4px rgba(0, 0, 0, 0.25)",
@@ -36,6 +36,7 @@ const LogInButton = withStyles({
   },
 
   root: {
+    marginTop: "3rem",
     position: "relative",
     justifyContent: "center"
   }
@@ -66,8 +67,9 @@ const LogInContainer = withStyles({
 
 const TextBox = withStyles({
   root: {
+    marginTop: "1rem",
     border: "5px solid #F3D5FE",
-    overflow: "hidden",
+    // overflow: "hidden",
     borderRadius: 4,
     backgroundColor: "#FFFFFF"
   },
@@ -108,7 +110,8 @@ export class SignInView extends Component {
     this.setState({ password: event.target.value });
   };
 
-  handleSignIn = () => {
+  handleSignIn = event => {
+    event.preventDefault();
     firebase
       .auth()
       .signInWithEmailAndPassword(this.state.email, this.state.password)
@@ -125,9 +128,8 @@ export class SignInView extends Component {
     }
     return (
       <div className="SignInView">
-        <NavBarView></NavBarView>
         <LogInContainer>
-          <h1>Log In</h1>
+          <div className="login">Log In</div>
           <div className="goldBar"></div>
           <div>
             {/* <TextBox name='email' variant='filled' label='Email' className='usernameBox' InputProps={{disableUnderline: true}} onChange={(e) => this.handleChange(e)}></TextBox> */}
@@ -157,6 +159,42 @@ export class SignInView extends Component {
           </div>
           <LogInButton onClick={this.handleSignIn}>Log In</LogInButton>
           {this.state.errorMessage && <div><p>{this.state.errorMessage}</p></div>}
+
+          {/* <form>
+            <div>
+              <TextBox
+                name="email"
+                variant="filled"
+                label="Username/Email"
+                className="usernameBox"
+                InputProps={{ disableUnderline: true }}
+                onChange={this.updateEmail}
+              ></TextBox>
+            </div>
+            <div>
+              <TextBox
+                name="password"
+                variant="filled"
+                label="Password"
+                type="password"
+                className="passwordBox"
+                InputProps={{ disableUnderline: true }}
+                onChange={this.updatePassword}
+              ></TextBox>
+            </div>
+            <div className="checkbox">
+              <PurpleCheckbox></PurpleCheckbox>
+              <p className="keepLog">Keep me logged in</p>
+            </div>
+            {this.state.errorMessage && (
+              <div className="error">
+                {this.state.errorMessage}
+              </div>
+            )}
+            <LogInButton onClick={this.handleSignIn} type="submit">
+              Log In
+            </LogInButton>
+          </form> */}
           <div className="notMember">
             <p className="question">Not a member?</p>
             <Link to="/signup">

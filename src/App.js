@@ -9,6 +9,8 @@ import NewReviewView from "./NewReviewView/NewReviewView";
 import HomePageView from "./HomePageView/HomePageView";
 import { SignInView } from "./SignInView/SignInView.js";
 import AccountCreationView from "./AccountCreationView/AccountCreationView";
+import CourseSearchView from "./CourseSearchView/CourseSearchView";
+import OverAllRatingView from "./OverAllRatingView/OverAllRatingView";
 
 class App extends Component {
   constructor(props) {
@@ -22,7 +24,7 @@ class App extends Component {
     this.authUnRegFunc = firebase.auth().onAuthStateChanged(user => {
       if (user) {
         console.log("logged in");
-        console.log(user)
+        console.log(user);
         this.setState({
           user: user
         });
@@ -79,6 +81,8 @@ class App extends Component {
         <Route path="/signin" component={SignInView} />
         <Route path="/signup" component={AccountCreationView} />
         <Route path="/new-review" component={() => <NewReviewView currentUser={this.state.user} />} />
+        <Route path="/results/:query" component={CourseSearchView} />
+        <Route path="/overall-review" component={OverAllRatingView} />
       </Router>
     );
   }

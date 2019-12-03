@@ -1,6 +1,12 @@
 {
   "rules": {
-    ".read": "auth != null",
-    ".write": "auth != null"
+    "courseTeacherReview": {
+      ".read": "auth != null",
+      ".write": "auth != null"
+    },
+    "usernames": {
+      ".read": "true",
+      ".write": "auth != null"
+    }
   }
 }

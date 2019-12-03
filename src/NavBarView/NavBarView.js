@@ -30,10 +30,13 @@ const SignInButton = withStyles({
     width: "90px",
     height: "30px",
     float: "right",
-    top: "20px",
+    // top: "20px",
 
     backgroundColor: "#BD36EC",
     borderRadius: "20px"
+  },
+  root: {
+    marginTop: "1rem",
   }
 })(Button);
 
@@ -55,14 +58,17 @@ const SignUpButton = withStyles({
     float: "right",
     // paddingRight: '20px',
 
-    top: "20px",
+    // top: "20px",
 
     backgroundColor: "#BD36EC",
     borderRadius: "20px"
   },
 
+  // root: {
+  //   marginRight: '20px',
   root: {
-    marginRight: '20px',
+    marginTop: "1rem",
+    marginRight: "1rem"
   }
   
 })(Button);
@@ -85,18 +91,15 @@ const SignOutButton = withStyles({
     // right: "7%",
     float: "right",
 
-    top: "20px",
+    // top: "20px",
 
     backgroundColor: "#BD36EC",
     borderRadius: "20px"
+  },
+  root: {
+    // marginTop: "1rem",
   }
 })(Button);
-
-const NavContainer = withStyles({
-  root: {
-    width: "60%"
-  }
-});
 
 export class NavBarView extends Component {
   handleSignOut() {
@@ -110,17 +113,17 @@ export class NavBarView extends Component {
 
   render() {
     if (this.props.currentUser) {
+    // if (this.props.currentUser && this.props.currentUser.displayName) {
 
-      console.log(this.props.currentUser);
       return (
         <nav className="navBarView">
           <Container>
-            <NavLink exact to="/">
-              <img className="logo" src={logo} alt="CourseVisor logo"></img>
-            </NavLink>
-            <div className="nav-container">
-              <SignOutButton onClick={this.handleSignOut}>Sign Out</SignOutButton>
-              <div className="username">Hi, {this.props.currentUser.displayName}</div>
+              <NavLink exact to="/">
+                <img className="logo" src={logo} alt="CourseVisor logo"></img>
+              </NavLink>
+            <div className="nav-container-right">
+              <span className="username">Hi, {this.props.currentUser.displayName}</span>
+              <SignOutButton className="sign-out-button" onClick={this.handleSignOut}>Sign Out</SignOutButton>
             </div>
           </Container>
         </nav>

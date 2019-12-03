@@ -26,7 +26,9 @@ const SubmitInput = withStyles({
 
 const ReviewContainer = withStyles({
   root: {
-    width: "60%"
+    ['@media (min-width:780px)']: {
+      width: "60%"
+    }
   }
 })(Container);
 
@@ -123,7 +125,7 @@ class NewReviewView extends Component {
   addToFirebase = () => {
     const prefix = this.state.course.toUpperCase().split(" ")[0];
     const number = this.state.course.toUpperCase().split(" ")[1];
-    const instructor = this.state.instructor
+    const instructor = this.state.instructor.toUpperCase();
     const instructorReview = {
       ratingWorkload: this.state.workloadRating,
       ratingGrading: this.state.gradingRating,
