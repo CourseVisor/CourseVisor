@@ -11,6 +11,8 @@ import { SignInView } from "./SignInView/SignInView.js";
 import AccountCreationView from "./AccountCreationView/AccountCreationView";
 import CourseSearchView from "./CourseSearchView/CourseSearchView";
 import OverAllRatingView from "./OverAllRatingView/OverAllRatingView";
+import InstructorView from "./InstructorView/InstructorView";
+import ReviewView from "./ReviewView/ReviewView";
 
 class App extends Component {
   constructor(props) {
@@ -21,25 +23,20 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.authUnRegFunc = firebase.auth().onAuthStateChanged(user => {
+    this.authUnRegFunc = firebase.auth().onAuthStateChanged(async user => {
       if (user) {
         console.log("logged in");
         console.log(user);
-        this.setState({
+        await this.setState({
           user: user
         });
       } else {
         console.log("logged out");
-        this.setState({
+        await this.setState({
           user: null
         });
       }
     });
-    // this.userRef = firebase.database().ref("user");
-    // this.userRef.on("value", (snap) => {
-    //   let theUser = snap.val();
-    //   this.setState({ name: theUser });
-    // });
   }
 
   componentWillUnmount() {
@@ -60,49 +57,11 @@ class App extends Component {
         <Route path="/new-review/:courseName?/:instructor?" component={NewReviewView} />
         <Route path="/review/:courseName/:courseTitle/:instructor" component={ReviewView} />
         <Route path="/results/:query" component={CourseSearchView} />
+        <Route path="/course/:courseName" component={InstructorView} />
         <Route path="/overall-review" component={OverAllRatingView} />
       </Router>
     );
   }
 }
-// function App() {
-//   return (
-//     <div className="App">
-//       <NavBarView />
-//       <Router basename={process.env.PUBLIC_URL}>
-//         <Route exact path="/" component={HomePageView} />
-//         <Route path="/new-review" component={NewReviewView} />
-//       </Router>
-//     </div>
-//   );
-// }
-
-// return
-
-// export class NavSwitch extends Component {
-//   render() {
-//     let content = null;
-
-//     content = (
-//       <Switch>
-//         <Route path="/signin" render={() => <SignInView></SignInView>}/>}/>
-//       </Switch>
-//     )
-
-//     return content;
-
-//   }
-// }
-
-//             <NavBarView />
-//             <Route exact path="/" component={HomePageView} />
-//             <Route path="/new-review" component={NewReviewView} />
-//         </div>
-//       </Router>
-//     );
-
-//     return content;
-//   }
-// }
 
 export default App;
