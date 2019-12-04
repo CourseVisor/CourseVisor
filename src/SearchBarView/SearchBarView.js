@@ -51,6 +51,7 @@ class SearchBarView extends Component {
                 variant="filled"
                 label="Enter Course Prefix and Code"
                 className="searchQuery"
+                defaultValue={this.props.defaultViewSearch}
                 InputProps={{ disableUnderline: true }}
                 onChange={this.updateQuery}
               ></TextBox>

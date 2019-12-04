@@ -116,7 +116,7 @@ class CourseSearchView extends Component {
           </div>
         ) : (
           <TableContainer>
-            <SearchBarView />
+            <SearchBarView defaultViewSearch={this.state.query}/>
             <div className="results">
               {this.state.courses.length} search
               {this.state.courses.length > 1 ? " results " : " result "}
