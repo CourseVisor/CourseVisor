@@ -19,9 +19,9 @@ class OverAllRatingView extends Component {
     this.state = {
       course: "",
       instructor: "",
-      workloadRating: this.props.workload,
-      gradingRating: this.props.grading,
-      instructorRating: this.props.instructor,
+      workloadRating: 0,
+      gradingRating: 0,
+      instructorRating: 0,
       validate: null
     };
   }
@@ -32,7 +32,7 @@ class OverAllRatingView extends Component {
   render() {
     return (
       <div className='OverAllRatingView'>
-        {/* <Container className="rating-container"> */}
+        <Container className="rating-container">
           <div id='overallRatCont'>
             <div id='leftLine'></div>
             <h5 id='overallBanner'>Overall Ratings</h5>
@@ -52,12 +52,12 @@ class OverAllRatingView extends Component {
                 </Tooltip>
               </div>
               <div>
-                <p>{this.state.workloadRating.toFixed(2)} / 5</p>
+                <p>{this.state.workloadRating} / 5</p>
               </div>
               <StarRatings
                       rating={this.state.workloadRating}
                       starDimension="2rem"
-                      starRatedColor="#F9D51F"
+                      starRatedColor="#7800A2"
                       starHoverColor="#D88AF3"
                       // changeRating={this.changeWorkloadRating}
                       numberOfStars={5}
@@ -75,12 +75,12 @@ class OverAllRatingView extends Component {
                 </Tooltip>
               </div>
               <div>
-                <p>{this.state.gradingRating.toFixed(2)} / 5</p>
+                <p>{this.state.gradingRating} / 5</p>
               </div>
               <StarRatings
                       rating={this.state.gradingRating}
                       starDimension="2rem"
-                      starRatedColor="#F9D51F"
+                      starRatedColor="#7800A2"
                       starHoverColor="#D88AF3"
                       // changeRating={this.changeWorkloadRating}
                       numberOfStars={5}
@@ -98,12 +98,12 @@ class OverAllRatingView extends Component {
                 </Tooltip>
               </div>
               <div>
-                <p>{this.state.instructorRating.toFixed(2)} / 5</p>
+                <p>{this.state.instructorRating} / 5</p>
               </div>
               <StarRatings
                       rating={this.state.instructorRating}
                       starDimension="2rem"
-                      starRatedColor="#F9D51F"
+                      starRatedColor="#7800A2"
                       starHoverColor="#D88AF3"
                       // changeRating={this.changeWorkloadRating}
                       numberOfStars={5}
@@ -114,7 +114,7 @@ class OverAllRatingView extends Component {
 
 
           </div>
-        {/* </Container> */}
+        </Container>
       </div>
 
 

@@ -1,7 +1,7 @@
 {
   "rules": {
     "courseTeacherReview": {
-      ".read": "true",
+      ".read": "auth != null",
       ".write": "auth != null"
     },
     "usernames": {

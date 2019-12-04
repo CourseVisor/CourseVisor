@@ -1,45 +1,10 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import './SearchBarView.scss';
-import TextField from "@material-ui/core/TextField";
-import { withStyles } from "@material-ui/core/styles";
-import SearchIcon from '@material-ui/icons/Search';
-//Enter course prefix and code to search for a course
-
-const styles4SearchBar = {
-  resize:{
-    fontSize:50
-  },
-}
-const TextBox = withStyles({
-  root: {
-    width: "45%",
-    border: "2px solid #F3D5FE",
-    // overflow: "hidden",
-    borderRadius: 4,
-    backgroundColor: "#FFFFFF"
-  },
-  input: {
-    backgroundColor: "white"
-  },
-})(TextField);
+import './SearchBarView.css';
 
 class SearchBarView extends Component {
   constructor(props){
     super(props);
-
-    this.state = {
-      query: ""
-    };
-  }
-  updateQuery = event => {
-    this.setState({ query: event.target.value });
-  };
-  searchFor = event => {
-    event.preventDefault();
-    if (this.state.query != "") {
-      window.open("/results/"+this.state.query,"_self")
-    }
   }
   render(){
     return (

@@ -8,8 +8,7 @@ import {
   Tooltip,
   IconButton,
   Grid,
-  Button,
-  CircularProgress
+  Button
 } from "@material-ui/core";
 import { Redirect, Link } from "react-router-dom";
 import HelpOutlineOutlinedIcon from "@material-ui/icons/HelpOutlineOutlined";
@@ -72,36 +71,17 @@ class NewReviewView extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      loading: true,
-      currentUser: null,
-      course: this.props.match.params.courseName ? this.props.match.params.courseName : "",
-      courseTitle: "",
-      instructor: this.props.match.params.instructor ? this.formatInstructor(this.props.match.params.instructor) : "",
+      course: "",
+      instructor: "",
       workloadRating: 0,
       gradingRating: 0,
       instructorRating: 0,
       comments: "",
       clicked: false,
-      validate: null,
-      errorMessage: ""
+      validate: null
     };
   }
-  componentDidMount() {
-    firebase.auth().onAuthStateChanged((user) => {
-      if (user) {
-        this.setState({ currentUser: user });
-      } else {
-        this.setState({ currentUser: null });
-      }
-      if (this.state.loading) {
-        this.setState({ loading: false });
-      }
-    });
-  }
-  goBack = () => {
-    this.props.history.goBack();
-  }
-  updateCourse = async event => {
+  updateCourse = event => {
     this.setState({ course: event.target.value });
   };
   updateInstructor = event => {
@@ -128,7 +108,7 @@ class NewReviewView extends Component {
     });
   };
   validateForm = async () => {
-    this.setState({ clicked: true, errorMessage: "* Please complete all the required fields" });
+    this.setState({ clicked: true });
     const condition =
       this.state.workloadRating === 0 ||
       this.state.gradingRating === 0 ||
@@ -138,20 +118,11 @@ class NewReviewView extends Component {
     await this.setState({
       validate: condition ? false : true
     });
-    const prefix = this.state.course.toUpperCase().split(" ")[0];
-    const number = this.state.course.toUpperCase().split(" ")[1];
-    const snapshot =
-      prefix && number &&
-      await (firebase.database().ref(`courseTeacherReview/${prefix}/${number}`).once("value"));
-    if (!snapshot || !snapshot.val()) {
-      await this.setState({ validate: false, errorMessage: "* Course does not exist in the database" });
-    }
     if (this.state.validate) {
-      await this.addToFirebase();
-      this.props.history.push(`/review/${this.state.course.toUpperCase()}/${snapshot.val().courseTitle}/${this.state.instructor.toUpperCase()}`);
+      this.addToFirebase();
     }
   };
-  addToFirebase = async () => {
+  addToFirebase = () => {
     const prefix = this.state.course.toUpperCase().split(" ")[0];
     const number = this.state.course.toUpperCase().split(" ")[1];
     const instructor = this.state.instructor.toUpperCase();
@@ -160,29 +131,15 @@ class NewReviewView extends Component {
       ratingGrading: this.state.gradingRating,
       ratingInstructor: this.state.instructorRating,
       comment: this.state.comments,
-      username: this.state.currentUser.displayName
+      username: this.props.currentUser.displayName
     };
-    await firebase
+    firebase
       .database()
       .ref(`courseTeacherReview/${prefix}/${number}/instructors/${instructor}/reviews`)
       .push(instructorReview);
   };
-  formatInstructor = (instructor) => {
-    let result = "";
-    instructor && instructor.toLowerCase().split(" ").forEach(word => {
-      result += word.charAt(0).toUpperCase() + word.slice(1) + " "
-    });
-    return result.trim();
-  }
   render() {
-    if (this.state.loading) {
-      return (
-        <div className="progress">
-          <CircularProgress color="inherit" />
-        </div>
-      )
-    }
-    if (!this.state.currentUser) {
+    if (!this.props.currentUser) {
       return <Redirect push to="/signin" />;
     }
     return (
@@ -194,7 +151,6 @@ class NewReviewView extends Component {
               <SubmitInput
                 required
                 label="Course"
-                defaultValue={this.state.course}
                 placeholder="Please enter the course prefix and code, e.g. INFO 442"
                 variant="outlined"
                 onChange={this.updateCourse}
@@ -204,7 +160,6 @@ class NewReviewView extends Component {
               <SubmitInput
                 required
                 label="Instructor"
-                defaultValue={this.state.instructor}
                 placeholder="Please enter the instructor's full name"
                 variant="outlined"
                 onChange={this.updateInstructor}
@@ -310,14 +265,14 @@ class NewReviewView extends Component {
               />
             </div>
             <div className="buttons">
-              {/* <Link to="/"> */}
-              <CancelButton variant="outlined" onClick={this.goBack}>Cancel</CancelButton>
-              {/* </Link> */}
+              <Link to="/">
+                <CancelButton variant="outlined">Cancel</CancelButton>
+              </Link>
               <SubmitButton onClick={this.validateForm}>Submit</SubmitButton>
             </div>
             {this.state.clicked && !this.state.validate && (
               <span className="error-message">
-                {this.state.errorMessage}
+                * Please complete all the required fields
               </span>
             )}
           </form>
@@ -327,7 +282,7 @@ class NewReviewView extends Component {
   }
 }
 NewReviewView.propTypes = {
-  // currentUser: Object
+  currentUser: Object
 };
 
 export default NewReviewView;

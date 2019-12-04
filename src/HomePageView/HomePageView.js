@@ -1,38 +1,14 @@
 import React, { Component } from "react";
-import TextField from "@material-ui/core/TextField";
+import PropTypes from "prop-types";
+import Button from "@material-ui/core/Button";
 import { withStyles } from "@material-ui/core/styles";
 import SubmitButtonView from "../SubmitButtonView/SubmitButtonView.js";
 import "./HomePageView.scss";
 import { Link } from "react-router-dom";
-import SearchIcon from '@material-ui/icons/Search';
-
-const styles4SearchBar = {
-  resize:{
-    fontSize:50
-  },
-}
-const TextBox = withStyles({
-  root: {
-    width: "45%",
-    marginTop: "1rem",
-    border: "5px solid #F3D5FE",
-    // overflow: "hidden",
-    borderRadius: 4,
-    backgroundColor: "#FFFFFF"
-  },
-  input: {
-    backgroundColor: "white"
-  },
-  
-})(TextField);
 
 class HomePageView extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      query: ""
-    };
   }
 
   updateQuery = event => {
