@@ -11,6 +11,8 @@ import { SignInView } from "./SignInView/SignInView.js";
 import AccountCreationView from "./AccountCreationView/AccountCreationView";
 import CourseSearchView from "./CourseSearchView/CourseSearchView";
 import OverAllRatingView from "./OverAllRatingView/OverAllRatingView";
+import InstructorView from "./InstructorView/InstructorView";
+import ReviewView from "./ReviewView/ReviewView";
 
 class App extends Component {
   constructor(props) {
@@ -21,110 +23,41 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.authUnRegFunc = firebase.auth().onAuthStateChanged(user => {
+    this.authUnRegFunc = firebase.auth().onAuthStateChanged(async user => {
       if (user) {
         console.log("logged in");
         console.log(user);
-        this.setState({
+        await this.setState({
           user: user
         });
       } else {
         console.log("logged out");
-        this.setState({
+        await this.setState({
           user: null
         });
       }
     });
-    // this.userRef = firebase.database().ref("user");
-    // this.userRef.on("value", (snap) => {
-    //   let theUser = snap.val();
-    //   this.setState({ name: theUser });
-    // });
   }
 
   componentWillUnmount() {
     this.authUnRegFunc = null;
   }
 
-  // handleSignIn(email, password) {
-  //   this.setState({errorMessage:null}); //clear old errors
-
-  //   console.log(email);
-  //   console.log(password);
-
-  //   firebase.auth().signInWithEmailAndPassword(email, password)
-  //     .catch((err) => {
-  //       console.log(err);
-  //       this.setState({errorMessage:err.message});
-  //     })
-  // }
-
-  // handleSignOut() {
-  //   this.setState({errorMessage:null}); //clear old errors
-
-  // handleSignOut() {
-  //   this.setState({errorMessage:null}); //clear old errors
-
-  //   firebase.auth().signOut()
-  //     .catch((err) => {
-  //       console.log(err)
-  //       this.setState({errorMessage:err.message});
-  //     })
-
-  // }
-
-  render() {
+    render() {
     return (
       <Router>
         <NavBarView currentUser={this.state.user} />
         <Route exact path="/" component={HomePageView} />
         <Route path="/signin" component={SignInView} />
         <Route path="/signup" component={AccountCreationView} />
-        <Route path="/new-review" component={() => <NewReviewView currentUser={this.state.user} />} />
+        <Route path="/new-review/:courseName?/:instructor?" component={NewReviewView} />
+        <Route path="/review/:courseName/:courseTitle/:instructor" component={ReviewView} />
         <Route path="/results/:query" component={CourseSearchView} />
+        <Route path="/course/:courseName" component={InstructorView} />
         <Route path="/overall-review" component={OverAllRatingView} />
       </Router>
     );
   }
 }
-// function App() {
-//   return (
-//     <div className="App">
-//       <NavBarView />
-//       <Router basename={process.env.PUBLIC_URL}>
-//         <Route exact path="/" component={HomePageView} />
-//         <Route path="/new-review" component={NewReviewView} />
-//       </Router>
-//     </div>
-//   );
-// }
-
-// return
-
-// export class NavSwitch extends Component {
-//   render() {
-//     let content = null;
-
-//     content = (
-//       <Switch>
-//         <Route path="/signin" render={() => <SignInView></SignInView>}/>}/>
-//       </Switch>
-//     )
-
-//     return content;
-
-//   }
-// }
-
-//             <NavBarView />
-//             <Route exact path="/" component={HomePageView} />
-//             <Route path="/new-review" component={NewReviewView} />
-//         </div>
-//       </Router>
-//     );
-
-//     return content;
-//   }
-// }
 
 export default App;

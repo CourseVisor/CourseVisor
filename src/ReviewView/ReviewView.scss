@@ -1,0 +1,66 @@
+@import "../palette.scss";
+
+.instructor-name {
+  color: $super-dark-purple;
+  text-transform: capitalize;
+}
+
+.left-line {
+  width: 100%;
+  height: 0;
+  border: solid #FAB124;
+}
+
+.right-line {
+  width: 100%;
+  height: 0;
+  border: solid #FAB124;
+}
+
+.all-reviews {
+  display: flex;
+  flex-direction: row;
+  // flex-wrap: wrap;
+  
+  box-sizing: border-box;
+  padding-top: 4rem;
+  // position: absolute;
+  align-items: baseline;
+  justify-content: space-around;
+}
+
+.review-banner {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+  color: #42005A;
+  padding-left: 3em;
+  padding-right: 3em;
+}
+
+.top-container {
+  overflow: hidden;
+}
+
+.container-right {
+  float: right;
+}
+
+.heading {
+  float: left;
+  color: $super-dark-purple;
+}
+
+.searchBarReview {
+  width: 100%;
+  padding-top: 2em;
+  padding-left: 0em;
+}
+
+.full-line {
+  width: 100%;
+  height: 0;
+  border: solid #FAB124;
+}
