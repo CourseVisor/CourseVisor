@@ -19,6 +19,8 @@
 .nav-container-right {
     padding-top: 1rem;
     float: right;
+    align-items: center;
+    display: flex;
 }
 
 
@@ -55,10 +57,7 @@
         margin: 0;
         display: inline-block;
         padding-right: 1rem;
-    }
-
-    .username {
-        transform: translateY(-20%);
+        transform: translateY(7.5%);
     }
 }
 
