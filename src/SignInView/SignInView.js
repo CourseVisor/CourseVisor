@@ -155,10 +155,6 @@ export class SignInView extends Component {
               onChange={this.updatePassword}
             ></TextBox>
           </div>
-          <div className="checkbox">
-            <PurpleCheckbox></PurpleCheckbox>
-            <p className="keepLog">Keep me logged in</p>
-          </div>
           <LogInButton onClick={this.handleSignIn}>Log In</LogInButton>
           {this.state.errorMessage && <div><p>{this.state.errorMessage}</p></div>}
           <div className="notMember">

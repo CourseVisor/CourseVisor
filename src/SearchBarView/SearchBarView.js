@@ -14,9 +14,9 @@ const styles4SearchBar = {
 const TextBox = withStyles({
   root: {
     width: "45%",
-    border: "2px solid #F3D5FE",
+    border: "solid #F3D5FE",
     // overflow: "hidden",
-    borderRadius: 4,
+    borderRadius: 2,
     backgroundColor: "#FFFFFF"
   },
   input: {
