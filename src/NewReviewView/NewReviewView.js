@@ -310,9 +310,9 @@ class NewReviewView extends Component {
               />
             </div>
             <div className="buttons">
-              {/* <Link to="/"> */}
-              <CancelButton variant="outlined" onClick={this.goBack}>Cancel</CancelButton>
-              {/* </Link> */}
+              <Link exact to="/">
+                <CancelButton variant="outlined">Cancel</CancelButton>
+              </Link>
               <SubmitButton onClick={this.validateForm}>Submit</SubmitButton>
             </div>
             {this.state.clicked && !this.state.validate && (
