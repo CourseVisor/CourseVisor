@@ -135,7 +135,6 @@ export class SignInView extends Component {
           <div className="login">Log In</div>
           <div className="goldBar"></div>
           <div>
-            {/* <TextBox name='email' variant='filled' label='Email' className='usernameBox' InputProps={{disableUnderline: true}} onChange={(e) => this.handleChange(e)}></TextBox> */}
             <TextBox
               name="email"
               variant="filled"
@@ -162,42 +161,6 @@ export class SignInView extends Component {
           </div>
           <LogInButton onClick={this.handleSignIn}>Log In</LogInButton>
           {this.state.errorMessage && <div><p>{this.state.errorMessage}</p></div>}
-
-          {/* <form>
-            <div>
-              <TextBox
-                name="email"
-                variant="filled"
-                label="Username/Email"
-                className="usernameBox"
-                InputProps={{ disableUnderline: true }}
-                onChange={this.updateEmail}
-              ></TextBox>
-            </div>
-            <div>
-              <TextBox
-                name="password"
-                variant="filled"
-                label="Password"
-                type="password"
-                className="passwordBox"
-                InputProps={{ disableUnderline: true }}
-                onChange={this.updatePassword}
-              ></TextBox>
-            </div>
-            <div className="checkbox">
-              <PurpleCheckbox></PurpleCheckbox>
-              <p className="keepLog">Keep me logged in</p>
-            </div>
-            {this.state.errorMessage && (
-              <div className="error">
-                {this.state.errorMessage}
-              </div>
-            )}
-            <LogInButton onClick={this.handleSignIn} type="submit">
-              Log In
-            </LogInButton>
-          </form> */}
           <div className="notMember">
             <p className="question">Not a member?</p>
             <Link to="/signup">
