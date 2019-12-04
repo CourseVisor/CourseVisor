@@ -79,7 +79,7 @@ class InstructorView extends Component {
   }
   render() {
     const newReviewRoute = `/new-review/${this.state.courseName}`
-    console.log(newReviewRoute)
+    const route = this.props.currentUser ? newReviewRoute: "/signin"
     return (
       <div className="InstructorView">
         {this.state.loading ? (
@@ -121,7 +121,7 @@ class InstructorView extends Component {
                   Yikes, looks like nobody has made a review for them yet.
                   Submit your review to start a new course/instructor combination!
                 </div>
-                <Link to={newReviewRoute}>
+                <Link to={route}>
                   <SubmitButtonView />
                 </Link>
               </InstructorContainer>

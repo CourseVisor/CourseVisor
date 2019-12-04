@@ -73,6 +73,7 @@ class ReviewView extends Component {
   }
   render() {
     const reviewRoute = `/new-review/${this.state.courseName}/${this.state.instructor}`
+    const route = this.props.currentUser ? reviewRoute : "/signin"
     return (
       <div className="ReviewView">
         {this.state.loading ? (
@@ -87,7 +88,7 @@ class ReviewView extends Component {
               <div className="top-container">
                 <h3 className="heading">{this.state.courseName} {this.state.courseTitle}</h3>
                 <div className="container-right">
-                  <Link to={reviewRoute}>
+                  <Link to={route}>
                     <SubmitButtonView />
                   </Link>
                 </div>

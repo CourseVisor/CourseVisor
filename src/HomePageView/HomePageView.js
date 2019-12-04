@@ -48,6 +48,7 @@ class HomePageView extends Component {
   }
 
   render() {
+    const route = this.props.currentUser ? "/new-review": "/signin";
     return (
       <div className="HomePageView">
         <h1 className="search-text">
@@ -85,7 +86,7 @@ class HomePageView extends Component {
           </form>
         </div>
         <div id="or-text" className="or-text">-- or --</div>
-        <Link to="/new-review">
+        <Link to={route}>
           <SubmitButtonView />
         </Link>
       </div>

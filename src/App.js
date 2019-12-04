@@ -44,21 +44,20 @@ class App extends Component {
   }
 
   updateUser = (user) => {
-    this.setState({ user, user});
+    this.setState({ user, user });
   }
 
   render() {
     return (
       <Router>
         <NavBarView currentUser={this.state.user} />
-        <Route exact path="/" component={HomePageView} />
+        <Route exact path="/" render={(props) => <HomePageView {...props} currentUser={this.state.user} />} />
         <Route path="/signin" component={SignInView} />
         <Route path="/signup" render={(props) => <AccountCreationView {...props} updateUser={this.updateUser} />} />
         <Route path="/new-review/:courseName?/:instructor?" component={NewReviewView} />
-        <Route path="/review/:courseName/:courseTitle/:instructor" component={ReviewView} />
+        <Route path="/review/:courseName/:courseTitle/:instructor" render={(props) => <ReviewView {...props} currentUser={this.state.user} />} />
         <Route path="/results/:query" component={CourseSearchView} />
-        <Route path="/course/:courseName" component={InstructorView} />
-        <Route path="/overall-review" component={OverAllRatingView} />
+        <Route path="/course/:courseName" render={(props) => <InstructorView {...props} currentUser={this.state.user} />} />
       </Router>
     );
   }

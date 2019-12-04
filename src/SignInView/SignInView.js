@@ -134,29 +134,31 @@ export class SignInView extends Component {
         <LogInContainer>
           <div className="login">Log In</div>
           <div className="goldBar"></div>
-          <div>
-            <TextBox
-              name="email"
-              variant="filled"
-              label="Email"
-              className="usernameBox"
-              InputProps={{ disableUnderline: true }}
-              onChange={this.updateEmail}
-            ></TextBox>
-          </div>
-          <div>
-            <TextBox
-              name="password"
-              variant="filled"
-              label="Password"
-              type="password"
-              className="passwordBox"
-              InputProps={{ disableUnderline: true }}
-              onChange={this.updatePassword}
-            ></TextBox>
-          </div>
-          <LogInButton onClick={this.handleSignIn}>Log In</LogInButton>
-          {this.state.errorMessage && <div><p>{this.state.errorMessage}</p></div>}
+          <form onSubmit={this.handleSignIn}>
+            <div>
+              <TextBox
+                name="email"
+                variant="filled"
+                label="Email"
+                className="usernameBox"
+                InputProps={{ disableUnderline: true }}
+                onChange={this.updateEmail}
+              ></TextBox>
+            </div>
+            <div>
+              <TextBox
+                name="password"
+                variant="filled"
+                label="Password"
+                type="password"
+                className="passwordBox"
+                InputProps={{ disableUnderline: true }}
+                onChange={this.updatePassword}
+              ></TextBox>
+            </div>
+            <LogInButton type="submit">Log In</LogInButton>
+          </form>
+          {this.state.errorMessage && <div className="error"><p>{this.state.errorMessage}</p></div>}
           <div className="notMember">
             <p className="question">Not a member?</p>
             <Link to="/signup">
