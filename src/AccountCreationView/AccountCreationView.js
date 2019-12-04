@@ -130,7 +130,11 @@ export class AccountCreationView extends Component {
             this.props.history.push("/");
           }
         } catch (error) {
-          this.setState({ error: error.message });
+          if (error.message === 'The email address is already in use by another account.') {
+            this.setState({ error: 'Account with this email already exists.' });
+          } else {
+            this.setState({ error: error.message });
+          }
           console.log(error);
         }
       }

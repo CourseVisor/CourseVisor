@@ -117,8 +117,11 @@ export class SignInView extends Component {
       .signInWithEmailAndPassword(this.state.email, this.state.password)
       .then(() => this.setState({ errorMessage: "", submitted: true }))
       .catch(async err => {
-        console.log(err);
-        this.setState({ errorMessage: err.message });
+        if (err.message === 'The password is invalid or the user does not have a password.') {
+          this.setState({ errorMessage: 'Incorrect email or password.' });
+        } else {
+          this.setState({ errorMessage: err.message });
+        }
       });
   };
 
