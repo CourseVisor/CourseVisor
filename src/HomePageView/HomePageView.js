@@ -15,9 +15,9 @@ const TextBox = withStyles({
   root: {
     width: "45%",
     marginTop: "1rem",
-    border: "5px solid #F3D5FE",
+    border: "solid #F3D5FE",
     // overflow: "hidden",
-    borderRadius: 4,
+    borderRadius: 3,
     backgroundColor: "#FFFFFF"
   },
   input: {
@@ -71,7 +71,7 @@ class HomePageView extends Component {
                   <svg {...svgProps}>
                     <defs>
                       <linearGradient id="gradient1">
-                        <stop offset="0%" stopColor={"#DADADA"} />
+                        <stop offset="0%" stopColor={"#BD36EC"} />
                       </linearGradient>
                     </defs>
                     {React.cloneElement(svgProps.children[0], {
