@@ -117,8 +117,11 @@ export class SignInView extends Component {
       .signInWithEmailAndPassword(this.state.email, this.state.password)
       .then(() => this.setState({ errorMessage: "", submitted: true }))
       .catch(async err => {
-        console.log(err);
-        this.setState({ errorMessage: err.message });
+        if (err.message === 'The password is invalid or the user does not have a password.') {
+          this.setState({ errorMessage: 'Incorrect email or password.' });
+        } else {
+          this.setState({ errorMessage: err.message });
+        }
       });
   };
 
@@ -131,45 +134,37 @@ export class SignInView extends Component {
         <LogInContainer>
           <div className="login">Log In</div>
           <div className="goldBar"></div>
-          <form>
-            <div>
-              <TextBox
-                name="email"
-                variant="filled"
-                label="Username/Email"
-                className="usernameBox"
-                InputProps={{ disableUnderline: true }}
-                onChange={this.updateEmail}
-              ></TextBox>
-            </div>
-            <div>
-              <TextBox
-                name="password"
-                variant="filled"
-                label="Password"
-                type="password"
-                className="passwordBox"
-                InputProps={{ disableUnderline: true }}
-                onChange={this.updatePassword}
-              ></TextBox>
-            </div>
-            <div className="checkbox">
-              <PurpleCheckbox></PurpleCheckbox>
-              <p className="keepLog">Keep me logged in</p>
-            </div>
-            {this.state.errorMessage && (
-              <div className="error">
-                {this.state.errorMessage}
-              </div>
-            )}
-            <LogInButton onClick={this.handleSignIn} type="submit">
-              Log In
-            </LogInButton>
-          </form>
+          <div>
+            <TextBox
+              name="email"
+              variant="filled"
+              label="Email"
+              className="usernameBox"
+              InputProps={{ disableUnderline: true }}
+              onChange={this.updateEmail}
+            ></TextBox>
+          </div>
+          <div>
+            <TextBox
+              name="password"
+              variant="filled"
+              label="Password"
+              type="password"
+              className="passwordBox"
+              InputProps={{ disableUnderline: true }}
+              onChange={this.updatePassword}
+            ></TextBox>
+          </div>
+          <div className="checkbox">
+            <PurpleCheckbox></PurpleCheckbox>
+            <p className="keepLog">Keep me logged in</p>
+          </div>
+          <LogInButton onClick={this.handleSignIn}>Log In</LogInButton>
+          {this.state.errorMessage && <div><p>{this.state.errorMessage}</p></div>}
           <div className="notMember">
             <p className="question">Not a member?</p>
             <Link to="/signup">
-              <SignUpButton>Sign up</SignUpButton>
+              <SignUpButton onClick={this.handleSignIn}>Sign up</SignUpButton>
             </Link>
           </div>
         </LogInContainer>
@@ -179,5 +174,3 @@ export class SignInView extends Component {
 }
 
 export default SignInView;
-
-// onClick={() => "location.href='/signup'"}

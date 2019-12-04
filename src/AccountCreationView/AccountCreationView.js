@@ -125,11 +125,16 @@ export class AccountCreationView extends Component {
             console.log(newUser);
             await newUser.user.updateProfile({ displayName: this.state.username });
             console.log(newUser.user);
-            this.props.history.push("/");
             firebase.database().ref("usernames").child(newUser.user.uid).set(this.state.username)
+            this.props.updateUser(newUser.user)
+            this.props.history.push("/");
           }
         } catch (error) {
-          this.setState({ error: error.message });
+          if (error.message === 'The email address is already in use by another account.') {
+            this.setState({ error: 'Account with this email already exists.' });
+          } else {
+            this.setState({ error: error.message });
+          }
           console.log(error);
         }
       }
@@ -165,7 +170,7 @@ export class AccountCreationView extends Component {
               onChange={this.updatePassword}
               variant="filled"
               label="Password"
-              type="password"
+              type='password'
               className="createPasswordBox"
               InputProps={{ disableUnderline: true }}
             ></TextBox>
@@ -173,7 +178,7 @@ export class AccountCreationView extends Component {
               onChange={this.updatePasswordConf}
               variant="filled"
               label="Confirm Password"
-              type="password"
+              type='password'
               className="confirmPasswordBox"
               InputProps={{ disableUnderline: true }}
             ></TextBox>

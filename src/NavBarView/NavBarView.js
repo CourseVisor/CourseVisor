@@ -13,13 +13,13 @@ import AccountCreationView from "../AccountCreationView/AccountCreationView";
 import firebase from "firebase/app";
 import "firebase/auth";
 import { Grid, Container } from "@material-ui/core";
+import { spacing } from '@material-ui/system';
 
 const SignInButton = withStyles({
   text: {
-    // position: "absolute",
     fontFamily: "Roboto",
     fontWeight: "bold",
-    fontSize: "12px",
+    fontSize: "9px",
     lineHeight: "14px",
     display: "flex",
     alignItems: "center",
@@ -27,26 +27,45 @@ const SignInButton = withStyles({
     textTransform: "capitalize",
     color: "#FFFFFF",
 
-    width: "90px",
-    height: "30px",
-    // right: "15%",
+    width: "60px",
+    height: "20px",
     float: "right",
-    // top: "20px",
 
     backgroundColor: "#BD36EC",
-    borderRadius: "20px"
+    borderRadius: "20px",
+
+    ['@media (min-width:400px)']: {
+      width: "75px",
+      height: "25px",
+
+      fontSize: "10.5px",
+    },
+
+    ['@media (min-width:768px)']: {
+      width: "90px",
+      height: "30px",
+
+      fontSize: "12px",
+    },
   },
   root: {
-    marginTop: "1rem",
+    marginTop: "1.25rem",
+
+    ['@media (min-width:400px)']: {
+      marginTop: '1.1rem',
+    },
+
+    ['@media (min-width:768px)']: {
+      marginTop: '1rem',
+    },
   }
 })(Button);
 
-const SignUpButton = withStyles({
+const SignUpButton = withStyles({  
   text: {
-    // position: "absolute",
     fontFamily: "Roboto",
     fontWeight: "bold",
-    fontSize: "12px",
+    fontSize: "9px",
     lineHeight: "14px",
     display: "flex",
     alignItems: "center",
@@ -54,29 +73,52 @@ const SignUpButton = withStyles({
     textTransform: "capitalize",
     color: "#FFFFFF",
 
-    width: "90px",
-    height: "30px",
+    width: "60px",
+    height: "20px",
 
-    // right: "7%",
     float: "right",
 
-    // top: "20px",
 
     backgroundColor: "#BD36EC",
-    borderRadius: "20px"
+    borderRadius: "20px",
+
+    ['@media (min-width:400px)']: {
+      width: "75px",
+      height: "25px",
+
+      fontSize: "10.5px",
+    },
+
+    ['@media (min-width:768px)']: {
+      width: "90px",
+      height: "30px",
+
+      fontSize: "12px",
+    },
   },
+
   root: {
-    marginTop: "1rem",
-    marginRight: "1rem"
+    marginTop: "1.25rem",
+    marginRight: ".5rem",
+
+    ['@media (min-width:400px)']: {
+      marginTop: '1.1rem',
+      marginRight: '.75rem',
+    },
+
+    ['@media (min-width:768px)']: {
+      marginTop: '1rem',
+      marginRight: '1rem',
+    },
   }
+  
 })(Button);
 
 const SignOutButton = withStyles({
   text: {
-    // position: "absolute",
     fontFamily: "Roboto",
     fontWeight: "bold",
-    fontSize: "12px",
+    fontSize: "9px",
     lineHeight: "14px",
     display: "flex",
     alignItems: "center",
@@ -84,15 +126,34 @@ const SignOutButton = withStyles({
     textTransform: "capitalize",
     color: "#FFFFFF",
 
-    width: "90px",
-    height: "30px",
-    // right: "7%",
+    width: "60px",
+    height: "20px",
     float: "right",
 
-    // top: "20px",
-
     backgroundColor: "#BD36EC",
-    borderRadius: "20px"
+    borderRadius: "20px",
+
+    ['@media (min-width:400px)']: {
+      width: "75px",
+      height: "25px",
+
+      fontSize: "10.5px",
+    },
+
+    ['@media (min-width:768px)']: {
+      width: "90px",
+      height: "30px",
+
+      fontSize: "12px",
+    },
+  },
+  root: {
+    marginTop: ".25rem",
+
+    ['@media (min-width:400px)']: {
+      marginTop: '0rem',
+
+    },
   }
 })(Button);
 
@@ -108,6 +169,7 @@ export class NavBarView extends Component {
 
   render() {
     if (this.props.currentUser && this.props.currentUser.displayName) {
+
       return (
         <nav className="navBarView">
           <Container>
@@ -124,7 +186,9 @@ export class NavBarView extends Component {
               </div>
 
               <div className="username">Hi, {this.props.currentUser.displayName}</div>
-              <SignOutButton className="sign-out-button" onClick={this.handleSignOut}>Sign Out</SignOutButton>
+              <Link to='/'>
+                <SignOutButton className="sign-out-button" onClick={this.handleSignOut}>Sign Out</SignOutButton>
+              </Link>
             </div>
           </Container>
         </nav>
@@ -133,9 +197,6 @@ export class NavBarView extends Component {
       return (
         <nav className="navBarView">
           <Container>
-            {/* <NavLink exact to='/' component={HomePageView}><img className='logo' src={logo} alt='CourseVisor logo'></img></NavLink>
-          <NavLink to='/signin' component={SignInView}><SignInButton>Sign In</SignInButton></NavLink>
-          <NavLink to='/signup' component={AccountCreationView}><SignUpButton>Sign Up</SignUpButton></NavLink> */}
             <NavLink exact to="/">
               <img className="logo" src={logo} alt="CourseVisor logo"></img>
             </NavLink>
@@ -152,4 +213,5 @@ export class NavBarView extends Component {
   }
 }
 
+// export default withRouter(NavBarView);
 export default NavBarView;
