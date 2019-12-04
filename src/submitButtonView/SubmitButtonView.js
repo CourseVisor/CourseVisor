@@ -32,9 +32,7 @@ export class SubmitButtonView extends Component {
   //}
   render() {
     return (
-      <div className="SubmitButtonView">
-        <StyledButton className="SubmitNew">Submit New Review</StyledButton>
-      </div>
+      <StyledButton className="SubmitNew">Submit New Review</StyledButton>
     );
   }
 }
