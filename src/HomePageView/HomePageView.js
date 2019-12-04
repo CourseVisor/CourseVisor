@@ -42,6 +42,8 @@ class HomePageView extends Component {
     event.preventDefault();
     if (this.state.query != "") {
       window.open("/results/"+this.state.query,"_self")
+    } else {
+      document.getElementById("SearchErrorMessage").style.display = "block"
     }
   }
 
@@ -79,9 +81,10 @@ class HomePageView extends Component {
                 );
               }}
             />
+            <p id="SearchErrorMessage" class="SearchErrorMessage">Please provide a class to search.</p>
           </form>
         </div>
-        <div className="or-text">-- or --</div>
+        <div id="or-text" className="or-text">-- or --</div>
         <Link to="/new-review">
           <SubmitButtonView />
         </Link>
