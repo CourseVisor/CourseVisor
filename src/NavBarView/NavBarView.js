@@ -3,13 +3,10 @@ import PropTypes from "prop-types";
 import "./NavBarView.scss";
 import logo from "../logo.png";
 
-import { BrowserRouter as Router, Route, Link, NavLink, Switch } from "react-router-dom";
+import { BrowserRouter as Link, NavLink} from "react-router-dom";
 
 import Button from "@material-ui/core/Button";
 import { withStyles } from "@material-ui/core/styles";
-import HomePageView from "../HomePageView/HomePageView";
-import SignInView from "../SignInView/SignInView";
-import AccountCreationView from "../AccountCreationView/AccountCreationView";
 import firebase from "firebase/app";
 import "firebase/auth";
 import { Grid, Container } from "@material-ui/core";
@@ -19,7 +16,7 @@ const SignInButton = withStyles({
   text: {
     fontFamily: "Roboto",
     fontWeight: "bold",
-    fontSize: "9px",
+    fontSize: "10px",
     lineHeight: "14px",
     display: "flex",
     alignItems: "center",
@@ -38,7 +35,7 @@ const SignInButton = withStyles({
       width: "75px",
       height: "25px",
 
-      fontSize: "10.5px",
+      fontSize: "11px",
     },
 
     ['@media (min-width:768px)']: {
@@ -65,7 +62,7 @@ const SignUpButton = withStyles({
   text: {
     fontFamily: "Roboto",
     fontWeight: "bold",
-    fontSize: "9px",
+    fontSize: "10px",
     lineHeight: "14px",
     display: "flex",
     alignItems: "center",
@@ -86,7 +83,7 @@ const SignUpButton = withStyles({
       width: "75px",
       height: "25px",
 
-      fontSize: "10.5px",
+      fontSize: "11px",
     },
 
     ['@media (min-width:768px)']: {
@@ -118,7 +115,7 @@ const SignOutButton = withStyles({
   text: {
     fontFamily: "Roboto",
     fontWeight: "bold",
-    fontSize: "9px",
+    fontSize: "10px",
     lineHeight: "14px",
     display: "flex",
     alignItems: "center",
@@ -137,7 +134,7 @@ const SignOutButton = withStyles({
       width: "75px",
       height: "25px",
 
-      fontSize: "10.5px",
+      fontSize: "11px",
     },
 
     ['@media (min-width:768px)']: {

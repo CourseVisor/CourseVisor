@@ -68,7 +68,7 @@ const LogInContainer = withStyles({
 const TextBox = withStyles({
   root: {
     marginTop: "1rem",
-    border: "5px solid #F3D5FE",
+    border: "2px solid #F3D5FE",
     // overflow: "hidden",
     borderRadius: 4,
     backgroundColor: "#FFFFFF"
