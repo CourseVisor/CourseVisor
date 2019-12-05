@@ -183,9 +183,9 @@ export class NavBarView extends Component {
               </div>
 
               <div className="username">Hi, {this.props.currentUser.displayName}</div>
-              <Link to='/'>
+              <NavLink exact to='/'>
                 <SignOutButton className="sign-out-button" onClick={this.handleSignOut}>Sign Out</SignOutButton>
-              </Link>
+              </NavLink>
             </div>
           </Container>
         </nav>
@@ -210,5 +210,4 @@ export class NavBarView extends Component {
   }
 }
 
-// export default withRouter(NavBarView);
 export default NavBarView;
