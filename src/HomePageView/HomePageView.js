@@ -7,8 +7,8 @@ import { Link } from "react-router-dom";
 import SearchIcon from '@material-ui/icons/Search';
 
 const styles4SearchBar = {
-  resize:{
-    fontSize:50
+  resize: {
+    fontSize: 50
   },
 }
 const TextBox = withStyles({
@@ -23,7 +23,7 @@ const TextBox = withStyles({
   input: {
     backgroundColor: "white"
   },
-  
+
 })(TextField);
 
 class HomePageView extends Component {
@@ -31,24 +31,30 @@ class HomePageView extends Component {
     super(props);
 
     this.state = {
-      query: ""
+      query: "",
+      error: false
     };
   }
 
   updateQuery = event => {
+    if (event.target.value.length >= 20) {
+      document.getElementById("SearchErrorMessage").innerHTML = "Search cannot exceed 20 characters";
+      document.getElementById("SearchErrorMessage").style.display = "block";
+    }
     this.setState({ query: event.target.value });
   };
   searchFor = event => {
     event.preventDefault();
     if (this.state.query != "") {
-      window.open("/results/"+this.state.query,"_self")
+      window.open("/results/" + this.state.query, "_self")
     } else {
+      document.getElementById("SearchErrorMessage").innerHTML = "Please provide a class to search.";
       document.getElementById("SearchErrorMessage").style.display = "block"
     }
   }
 
   render() {
-    const route = this.props.currentUser ? "/new-review": "/signin";
+    const route = this.props.currentUser ? "/new-review" : "/signin";
     return (
       <div className="HomePageView">
         <h1 className="search-text">
@@ -64,25 +70,27 @@ class HomePageView extends Component {
                 className="searchQuery"
                 InputProps={{ disableUnderline: true }}
                 onChange={this.updateQuery}
-                
+                inputProps={{
+                  maxLength: 20,
+                }}
               ></TextBox>
             </div>
             <SearchIcon onClick={this.searchFor} fontSize="large" color="disabled" component={svgProps => {
-                return (
-                  <svg {...svgProps}>
-                    <defs>
-                      <linearGradient id="gradient1">
-                        <stop offset="0%" stopColor={"#BD36EC"} />
-                      </linearGradient>
-                    </defs>
-                    {React.cloneElement(svgProps.children[0], {
-                      fill: 'url(#gradient1)',
-                    })}
-                  </svg>
-                );
-              }}
+              return (
+                <svg {...svgProps}>
+                  <defs>
+                    <linearGradient id="gradient1">
+                      <stop offset="0%" stopColor={"#BD36EC"} />
+                    </linearGradient>
+                  </defs>
+                  {React.cloneElement(svgProps.children[0], {
+                    fill: 'url(#gradient1)',
+                  })}
+                </svg>
+              );
+            }}
             />
-            <p id="SearchErrorMessage" class="SearchErrorMessage">Please provide a class to search.</p>
+            <p id="SearchErrorMessage" class="SearchErrorMessage"></p>
           </form>
         </div>
         <div id="or-text" className="or-text">-- or --</div>

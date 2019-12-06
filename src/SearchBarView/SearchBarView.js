@@ -54,6 +54,9 @@ class SearchBarView extends Component {
                 defaultValue={this.props.defaultViewSearch}
                 InputProps={{ disableUnderline: true }}
                 onChange={this.updateQuery}
+                inputProps={{
+                  maxLength: 20,
+                }}
               ></TextBox>
             </div>
             <SearchIcon onClick={this.searchFor} fontSize="large" color="disabled" component={svgProps => {
