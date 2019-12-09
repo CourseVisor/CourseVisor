@@ -113,6 +113,10 @@ export class AccountCreationView extends Component {
     event.preventDefault();
     this.setState({ error: "" });
     if (this.state.email && this.state.password && this.state.username) {
+      if (this.state.username.includes(" ")) {
+        this.setState({ error: "Username cannot contain spaces."});
+        return;
+      }
       if (this.state.password !== this.state.passwordConf) {
         this.setState({ error: "Passwords do not match" });
       } else {
