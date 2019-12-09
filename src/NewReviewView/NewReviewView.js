@@ -128,16 +128,24 @@ class NewReviewView extends Component {
     });
   };
   validateForm = async () => {
-    this.setState({ clicked: true, errorMessage: "* Please complete all the required fields" });
-    const condition =
+    this.setState({ clicked: true, errorMessage: "" });
+    const checkEmptyFields =
       this.state.workloadRating === 0 ||
       this.state.gradingRating === 0 ||
       this.state.instructorRating === 0 ||
       !this.state.course ||
       !this.state.instructor;
-    await this.setState({
-      validate: condition ? false : true
-    });
+    if (checkEmptyFields) {
+      await this.setState({
+        validate: false,
+        errorMessage: "* Please complete all the required fields"
+      });
+      return;
+    }
+    if (this.state.instructor.match(/^\W/)) {
+      this.setState({ validate: false, errorMessage: "* Instructor field cannot contain illegal characters" });
+      return;
+    }
     const prefix = this.state.course.toUpperCase().split(" ")[0];
     const number = this.state.course.toUpperCase().split(" ")[1];
     const snapshot =
@@ -145,11 +153,11 @@ class NewReviewView extends Component {
       await (firebase.database().ref(`courseTeacherReview/${prefix}/${number}`).once("value"));
     if (!snapshot || !snapshot.val()) {
       await this.setState({ validate: false, errorMessage: "* Course does not exist in the database" });
+      return;
     }
-    if (this.state.validate) {
-      await this.addToFirebase();
-      this.props.history.push(`/review/${this.state.course.toUpperCase()}/${snapshot.val().courseTitle}/${this.state.instructor.toUpperCase()}`);
-    }
+
+    await this.addToFirebase();
+    !this.state.errorMessage && this.props.history.push(`/review/${this.state.course.toUpperCase()}/${snapshot.val().courseTitle}/${this.state.instructor.toUpperCase()}`);
   };
   addToFirebase = async () => {
     const prefix = this.state.course.toUpperCase().split(" ")[0];
@@ -162,10 +170,17 @@ class NewReviewView extends Component {
       comment: this.state.comments,
       username: this.state.currentUser.displayName
     };
-    await firebase
-      .database()
-      .ref(`courseTeacherReview/${prefix}/${number}/instructors/${instructor}/reviews`)
-      .push(instructorReview);
+    try {
+      await firebase
+        .database()
+        .ref(`courseTeacherReview/${prefix}/${number}/instructors/${instructor}/reviews`)
+        .push(instructorReview)
+        .catch(error => {
+          this.setState({ errorMessage: "* Instructor field cannot contain illegal characters" });
+        })
+    } catch (error) {
+      this.setState({ errorMessage: "* Instructor field cannot contain illegal characters" });
+    }
   };
   formatInstructor = (instructor) => {
     let result = "";
@@ -313,7 +328,7 @@ class NewReviewView extends Component {
               <CancelButton variant="outlined" onClick={this.goBack}>Cancel</CancelButton>
               <SubmitButton onClick={this.validateForm}>Submit</SubmitButton>
             </div>
-            {this.state.clicked && !this.state.validate && (
+            {((this.state.clicked && !this.state.validate) || this.state.errorMessage) && (
               <span className="error-message">
                 {this.state.errorMessage}
               </span>
