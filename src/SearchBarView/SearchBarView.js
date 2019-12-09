@@ -33,12 +33,12 @@ class SearchBarView extends Component {
     };
   }
   updateQuery = event => {
-    this.setState({ query: event.target.value });
+    this.setState({ query: event.target.value.replace(" ", "%20") });
   };
   searchFor = event => {
     event.preventDefault();
     if (this.state.query != "") {
-      window.open("/results/"+this.state.query,"_self")
+      window.open("/results/"+this.state.query.replace(" ", "%20"),"_self")
     }
   }
   render(){

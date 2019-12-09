@@ -41,7 +41,7 @@ class HomePageView extends Component {
       document.getElementById("SearchErrorMessage").innerHTML = "Search cannot exceed 20 characters";
       document.getElementById("SearchErrorMessage").style.display = "block";
     }
-    this.setState({ query: event.target.value });
+    this.setState({ query: event.target.value.replace(" ", "%20") });
   };
   searchFor = event => {
     event.preventDefault();
