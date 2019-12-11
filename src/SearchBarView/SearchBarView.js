@@ -1,16 +1,16 @@
-import React, {Component} from 'react';
-import PropTypes from 'prop-types';
-import './SearchBarView.scss';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import "./SearchBarView.scss";
 import TextField from "@material-ui/core/TextField";
 import { withStyles } from "@material-ui/core/styles";
-import SearchIcon from '@material-ui/icons/Search';
+import SearchIcon from "@material-ui/icons/Search";
 //Enter course prefix and code to search for a course
 
 const styles4SearchBar = {
-  resize:{
-    fontSize:50
-  },
-}
+  resize: {
+    fontSize: 50
+  }
+};
 const TextBox = withStyles({
   root: {
     width: "45%",
@@ -21,11 +21,11 @@ const TextBox = withStyles({
   },
   input: {
     backgroundColor: "white"
-  },
+  }
 })(TextField);
 
 class SearchBarView extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
 
     this.state = {
@@ -38,48 +38,52 @@ class SearchBarView extends Component {
   searchFor = event => {
     event.preventDefault();
     if (this.state.query != "") {
-      window.open("/results/"+this.state.query.replace(" ", "%20"),"_self")
+      window.open("/results/" + this.state.query.replace(" ", "%20"), "_self");
     }
-  }
-  render(){
+  };
+  render() {
     return (
       <div className="SearchBarView">
         <form onSubmit={this.searchFor}>
-            <div>
-              <TextBox
-                name="seartchingFor"
-                variant="filled"
-                label="Enter Course Prefix and Code"
-                className="searchQuery"
-                defaultValue={this.props.defaultViewSearch}
-                InputProps={{ disableUnderline: true }}
-                onChange={this.updateQuery}
-                inputProps={{
-                  maxLength: 20,
-                }}
-              ></TextBox>
-            </div>
-            <SearchIcon onClick={this.searchFor} fontSize="large" color="disabled" component={svgProps => {
-                return (
-                  <svg {...svgProps}>
-                    <defs>
-                      <linearGradient id="gradient1">
-                        <stop offset="0%" stopColor={"#DADADA"} />
-                      </linearGradient>
-                    </defs>
-                    {React.cloneElement(svgProps.children[0], {
-                      fill: 'url(#gradient1)',
-                    })}
-                  </svg>
-                );
+          <div>
+            <TextBox
+              name="seartchingFor"
+              variant="filled"
+              label="Enter Course Prefix and Code"
+              className="searchQuery"
+              defaultValue={this.props.defaultViewSearch}
+              InputProps={{ disableUnderline: true }}
+              onChange={this.updateQuery}
+              inputProps={{
+                maxLength: 20
               }}
-            />
-          </form>
+            ></TextBox>
+          </div>
+          <SearchIcon
+            style={{ cursor: "pointer" }}
+            onClick={this.searchFor}
+            fontSize="large"
+            color="disabled"
+            component={svgProps => {
+              return (
+                <svg {...svgProps}>
+                  <defs>
+                    <linearGradient id="gradient1">
+                      <stop offset="0%" stopColor={"#DADADA"} />
+                    </linearGradient>
+                  </defs>
+                  {React.cloneElement(svgProps.children[0], {
+                    fill: "url(#gradient1)"
+                  })}
+                </svg>
+              );
+            }}
+          />
+        </form>
       </div>
-    )
+    );
   }
 }
-SearchBarView.propTypes = {
-}
+SearchBarView.propTypes = {};
 
 export default SearchBarView;
