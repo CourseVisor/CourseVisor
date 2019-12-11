@@ -1,75 +1,80 @@
 .accountCreationView {
-    padding-top: 70px;
-    background-color: #42005A;
-    height: 100vh;
+  padding-top: 70px;
+  background-color: #42005a;
+  //   height: auto;
+}
+html,
+body {
+  height: 100%;
+  background-color: #42005a;
 }
 
 .header {
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 2.5rem;
-    text-align: center;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 2.5rem;
+  text-align: center;
 
-    margin: 26.8px 0px;
+  margin: 26.8px 0px;
 }
 
 .title {
-    color: #FFFFFF;
+  color: #ffffff;
 }
 
 .name {
-    color: #FAB124;;
+  color: #fab124;
 }
 
 .goldBar {
-    width: 100%;
-    height: 0px;
-    // margin-top: 222px;
-    margin-bottom: 2rem;
-    text-align: center;
-    border: 2px solid #FAB124;
+  width: 100%;
+  height: 0px;
+  // margin-top: 222px;
+  margin-bottom: 2rem;
+  text-align: center;
+  border: 2px solid #fab124;
 }
 
 .createUsernameBox {
-    // padding-top: 2.5rem;
-    width: 100%;
-    height: auto;
-    display: block;
+  // padding-top: 2.5rem;
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
 .emailBox {
-    // padding-top: 2.5rem;
-    width: 100%;
-    display: block;
+  // padding-top: 2.5rem;
+  width: 100%;
+  display: block;
 }
 
 .createPasswordBox {
-    // padding-top: 2.5rem;
-    width: 100%;
-    display: block;
+  // padding-top: 2.5rem;
+  width: 100%;
+  display: block;
 }
 
 .confirmPasswordBox {
-    // padding-top: 2.5rem;
-    width: 100%;
-    display: block;
+  // padding-top: 2.5rem;
+  width: 100%;
+  display: block;
 }
 
 .alreadyMember {
-    position: relative;
-    width:100%;
-    height: auto;
-    padding-top: 1rem;
-    // top:11.5rem;
+  position: relative;
+  width: 100%;
+  height: auto;
+  padding-top: 1rem;
+  // top:11.5rem;
 
-    text-align: center;
-    font-size: 12px;
-    font-family: Roboto;
-    color: #FFFFFF;
+  text-align: center;
+  font-size: 12px;
+  font-family: Roboto;
+  color: #ffffff;
 }
 
 .error {
-    color: white;
-    padding-top: 2rem;
+  color: white;
+  padding-top: 2rem;
 }
